@@ -1,0 +1,5 @@
+name: Maurice-SMP
+version: '1.0-SNAPSHOT'
+
+main: io.github.skulli73.mauriceSMP.MauriceSMP
+api-version: '26.1'
