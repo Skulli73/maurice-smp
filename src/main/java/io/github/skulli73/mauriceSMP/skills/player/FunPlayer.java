@@ -29,7 +29,7 @@ public class FunPlayer {
     }
     public FunPlayer(UUID uniqueId) {
         this.uniqueId = uniqueId;
-        this.skills = MauriceSMP.getInstance().getSkillManager().getEmptySkillDataMap();
+        this.skills = MauriceSMP.getInstance().getSkillsManager().getEmptySkillDataMap();
     }
     @NotNull
     public SkillData getSkillData(SkillType type) {

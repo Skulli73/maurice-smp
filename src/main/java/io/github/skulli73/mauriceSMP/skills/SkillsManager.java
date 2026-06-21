@@ -8,12 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SkillManager {
+public class SkillsManager {
     FileConfiguration config;
     @Getter
     List<Skill> skills = new ArrayList<>();
 
-    public SkillManager(FileConfiguration config) {
+    public SkillsManager(FileConfiguration config) {
         this.config = config;
         importConfigs();
     }
