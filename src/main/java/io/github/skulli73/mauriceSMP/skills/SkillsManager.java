@@ -3,6 +3,8 @@ package io.github.skulli73.mauriceSMP.skills;
 import io.github.skulli73.mauriceSMP.MauriceSMP;
 import io.github.skulli73.mauriceSMP.skills.player.FunPlayer;
 import lombok.Getter;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
@@ -93,9 +95,10 @@ public class SkillsManager {
 
         int newLevel = data.getCurrentLevel();
 
-        p.sendMessage("§6You have gained " + xp + " XP in " + skill.getName() + "!");
+
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§6You have gained " + xp + " XP in " + skill.getName() + "!"));
         if (newLevel > currentLevel) {
-            p.sendMessage("§b" + (skill.getName()) + " has been increased to Level " + newLevel + "!");
+            p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§b" + (skill.getName()) + " has been increased to Level " + newLevel + "!"));
             p.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
         }
 
