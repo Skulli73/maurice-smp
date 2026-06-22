@@ -14,17 +14,25 @@ public class OnCraftListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onCraftItem(CraftItemEvent event) {
         SkillsManager skillsManager = MauriceSMP.getInstance().getSkillsManager();
-        FunPlayer player;
+        Player player = (Player) event.getWhoClicked();
+        FunPlayer funPlayer;
         try {
-            player = FunPlayer.get((Player) event.getWhoClicked());
+            funPlayer = FunPlayer.get(player);
         } catch (Exception e) {
             return;
         }
-        if (player == null)
+        if (funPlayer == null)
             return;
+
         ItemStack itemStack = event.getRecipe().getResult();
+        String itemName = itemStack.getType().name();
+        //give xp
+        if (skillsManager.getItemXpMap().containsKey(itemName)) {
+            skillsManager.addXPForCrafting(player, itemName);
+        }
+        //enchanting the item
         for (Skill skill : skillsManager.getSkills()) {
-            itemStack = skill.enchantItem(itemStack, player.getSkillData(skill.getSkillType()).getCurrentLevel());
+            itemStack = skill.enchantItem(itemStack, funPlayer.getSkillData(skill.getSkillType()).getCurrentLevel());
         }
         event.setCurrentItem(itemStack);
     }

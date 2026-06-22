@@ -2,7 +2,9 @@ package io.github.skulli73.mauriceSMP.skills;
 
 import io.github.skulli73.mauriceSMP.skills.player.FunPlayer;
 import lombok.Getter;
+import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
@@ -14,9 +16,11 @@ import java.util.List;
 import java.util.Map;
 
 public class SkillsManager {
-    private FileConfiguration config;
+    private final FileConfiguration config;
     @Getter
-    private List<Skill> skills = new ArrayList<>();
+    private final List<Skill> skills = new ArrayList<>();
+    @Getter
+    private final Map<String, List<SkillWithXP>> itemXpMap = new HashMap<>();
 
     public SkillsManager(FileConfiguration config) {
         this.config = config;
@@ -31,6 +35,29 @@ public class SkillsManager {
                 enchantments.add(getEnchantment(enchantment));
             }
             skills.add(new Skill(skillType, items, enchantments));
+        }
+        for (SkillType skillType : SkillType.values()) {
+            ConfigurationSection gainableXPSection = config.getConfigurationSection("gainable_xp." + skillType.getId());
+            if (gainableXPSection == null)
+                continue;
+            for (String key : gainableXPSection.getKeys(false)) {
+                double value = gainableXPSection.getDouble(key);
+                if (itemXpMap.containsKey(key)) {
+                    itemXpMap.get(key).add(new SkillWithXP(skillType, value));
+                } else {
+                    ArrayList<SkillWithXP> list = new ArrayList<>();
+                    list.add(new SkillWithXP(skillType, value));
+                    itemXpMap.put(key, list);
+                }
+            }
+        }
+    }
+
+    public void addXPForCrafting (Player player, String itemName) {
+        if (!itemXpMap.containsKey(itemName))
+            return;
+        for (SkillWithXP skillWithXP : itemXpMap.get(itemName)) {
+            SkillsManager.addXP(player, skillWithXP.skillType, skillWithXP.xp);
         }
     }
 
@@ -128,5 +155,13 @@ public class SkillsManager {
             case "WIND_BURST" -> Enchantment.WIND_BURST;
             default -> null;
         };
+    }
+    private class SkillWithXP {
+        private SkillType skillType;
+        private double xp;
+        private SkillWithXP (SkillType skillType, double xp) {
+            this.skillType = skillType;
+            this.xp = xp;
+        }
     }
 }

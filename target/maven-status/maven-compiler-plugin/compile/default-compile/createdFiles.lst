@@ -14,3 +14,4 @@ io\github\skulli73\mauriceSMP\skills\listeners\OnCraftListener.class
 io\github\skulli73\mauriceSMP\skills\Skill.class
 io\github\skulli73\mauriceSMP\skills\SkillLevel.class
 io\github\skulli73\mauriceSMP\MauriceSMP.class
+io\github\skulli73\mauriceSMP\skills\SkillsManager$SkillWithXP.class
