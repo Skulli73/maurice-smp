@@ -19,14 +19,11 @@ public class CommandSkills implements CommandExecutor {
     // This method is called, when somebody uses our command
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        SkillsManager skillsManager = MauriceSMP.getInstance().getSkillsManager();
         System.out.println(args);
         if (args.length > 1) {
             return false;
         }
         Player player;
-        String valueString;
-        int value;
         Server server = sender.getServer();
         if (args.length == 0) {
             if (!(sender instanceof Player)) {
@@ -64,7 +61,7 @@ public class CommandSkills implements CommandExecutor {
             ));
         }
 
-        player.sendMessage(joiner.toString());
+        sender.sendMessage(joiner.toString());
 
         return true;
     }

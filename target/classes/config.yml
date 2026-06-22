@@ -1,3 +1,11 @@
-gainable_enchants:
+skill_categories:
   ARMOUR:
     - IRON_HELMET
+
+gainable_enchantments:
+  ARMOUR:
+    - PROTECTION
+
+gainable_xp:
+  ARMOUR:
+    IRON_HELMET: 0.625
