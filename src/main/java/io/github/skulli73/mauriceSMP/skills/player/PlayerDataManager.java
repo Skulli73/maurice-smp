@@ -13,7 +13,6 @@ import java.util.UUID;
 
 public class PlayerDataManager {
 
-    private static final String DATA_PATH = MauriceSMP.getInstance().getDataFolder().getAbsolutePath() + File.separator + "player" + File.separator + "%s.json";
 
     private final Gson gson = new GsonBuilder()
             .serializeNulls()
@@ -27,7 +26,7 @@ public class PlayerDataManager {
     }
 
     private FunPlayer loadPlayerData(UUID uuid) {
-        File file = new File(DATA_PATH.formatted(uuid.toString()));
+        File file = new File(MauriceSMP.getInstance().getDATA_PATH().formatted(uuid.toString()));
         if (!file.exists()) {
             return new FunPlayer(
                     uuid
@@ -41,7 +40,7 @@ public class PlayerDataManager {
     }
 
     void savePlayerData(FunPlayer funPlayer) {
-        File file = new File(DATA_PATH.formatted(funPlayer.getUniqueId().toString()));
+        File file = new File(MauriceSMP.getInstance().getDATA_PATH().formatted(funPlayer.getUniqueId().toString()));
 
         JsonObject obj = gson.toJsonTree(funPlayer).getAsJsonObject();
 
