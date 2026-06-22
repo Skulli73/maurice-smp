@@ -8,7 +8,8 @@ public enum SkillType {
     BLADESMITHING("BLADESMITHING", "Bladesmithing"),
     PICKAXE("PICKAXE", "Pickaxe-craft"),
     AXE("AXE", "Forestry"),
-    HOE("HOE", "Farming");
+    HOE("HOE", "Farming"),
+    BOW("BOW", "Fletchery");
     @Getter
     private String id;
     @Getter

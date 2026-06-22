@@ -24,6 +24,9 @@ public class Skill {
     }
 
     public ItemStack enchantItem (ItemStack item, int skillLevel) {
+        if (skillLevel <= 1)
+            return item;
+        skillLevel = skillLevel - 1;
         if (items.contains(item.getType().name())) {
             for (Enchantment enchantment : enchantments) {
                 int skillLevelRandom = skillLevel + (int)Math.floor(Math.random()*10-5);
