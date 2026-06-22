@@ -4,6 +4,16 @@ skill_categories:
     - IRON_CHESTPLATE
     - IRON_LEGGINGS
     - IRON_BOOTS
+  BLADESMITHING:
+    - IRON_SWORD
+    - IRON_SPEER
+    - IRON_AXE
+  PICKAXE:
+    - IRON_PICKAXE
+  AXE:
+    - IRON_AXE
+  HOE:
+    - IRON_HOE
 
 gainable_enchantments:
   ARMOUR:
@@ -16,3 +26,13 @@ gainable_xp:
     IRON_BOOTS: 0.5
     IRON_CHESTPLATE: 1
     IRON_LEGGINGS: 0.875
+  BLADESMITHING:
+    IRON_SWORD: 0.25
+    IRON_AXE: 0.1
+    IRON_SPEER: 0.125
+  PICKAXE:
+    IRON_PICKAXE: 0.375
+  AXE:
+    IRON_AXE: 0.375
+  HOE:
+    IRON_HOE: 0.375

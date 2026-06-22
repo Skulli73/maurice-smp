@@ -4,7 +4,11 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 public enum SkillType {
-    ARMOUR("ARMOUR", "Armouring");
+    ARMOUR("ARMOUR", "Armouring"),
+    BLADESMITHING("BLADESMITHING", "Bladesmithing"),
+    PICKAXE("PICKAXE", "Pickaxe-craft"),
+    AXE("AXE", "Forestry"),
+    HOE("HOE", "Farming");
     @Getter
     private String id;
     @Getter

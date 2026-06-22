@@ -4,6 +4,7 @@ import io.github.skulli73.mauriceSMP.skills.Skill;
 import io.github.skulli73.mauriceSMP.skills.SkillType;
 import io.github.skulli73.mauriceSMP.skills.SkillsManager;
 import io.github.skulli73.mauriceSMP.skills.player.FunPlayer;
+import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
@@ -23,7 +24,8 @@ public class OnCraftListener implements Listener {
         }
         if (funPlayer == null)
             return;
-
+        if (event.getCursor().getType() != Material.AIR)
+            return;
         ItemStack itemStack = event.getRecipe().getResult();
         String itemName = itemStack.getType().name();
         //give xp
