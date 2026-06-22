@@ -1,5 +1,6 @@
 package io.github.skulli73.mauriceSMP.skills;
 
+import io.github.skulli73.mauriceSMP.MauriceSMP;
 import io.github.skulli73.mauriceSMP.skills.player.FunPlayer;
 import lombok.Getter;
 import org.bukkit.Material;
@@ -22,8 +23,8 @@ public class SkillsManager {
     @Getter
     private final Map<String, List<SkillWithXP>> itemXpMap = new HashMap<>();
 
-    public SkillsManager(FileConfiguration config) {
-        this.config = config;
+    public SkillsManager() {
+        this.config = MauriceSMP.getInstance().getConfig();
         importConfigs();
     }
     private void importConfigs() {

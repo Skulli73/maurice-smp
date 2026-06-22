@@ -6,10 +6,11 @@ skill_categories:
     - IRON_BOOTS
   BLADESMITHING:
     - IRON_SWORD
-    - IRON_SPEER
+    - IRON_SPEAR
     - IRON_AXE
   PICKAXE:
     - IRON_PICKAXE
+    - IRON_SHOVEL
   AXE:
     - IRON_AXE
   HOE:
@@ -19,6 +20,14 @@ gainable_enchantments:
   ARMOUR:
     - PROTECTION
     - UNBREAKING
+  BLADESMITHING:
+    - SHARPNESS
+  PICKAXE:
+    - EFFICIENCY
+  AXE:
+    - EFFICIENCY
+  HOE:
+    - FORTUNE
 
 gainable_xp:
   ARMOUR:
@@ -29,10 +38,21 @@ gainable_xp:
   BLADESMITHING:
     IRON_SWORD: 0.25
     IRON_AXE: 0.1
-    IRON_SPEER: 0.125
+    IRON_SPEAR: 0.125
   PICKAXE:
     IRON_PICKAXE: 0.375
+    IRON_SHOVEL: 0.125
   AXE:
     IRON_AXE: 0.375
   HOE:
     IRON_HOE: 0.375
+
+disabled_recipes:
+  - ENCHANTING_TABLE
+  - DIAMOND_HELMET
+  - DIAMOND_CHESTPLATE
+  - DIAMOND_LEGGINGS
+  - DIAMOND_BOOTS
+  - DIAMOND_SPEAR
+  - DIAMOND_SHOVEL
+  - DIAMOND_HOE
