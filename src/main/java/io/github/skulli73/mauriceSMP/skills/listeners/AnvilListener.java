@@ -16,8 +16,8 @@ public class AnvilListener implements Listener {
     public void onAnvilItem(PrepareAnvilEvent event) {//disable upgrading enchantments with anvil
         AnvilInventory anvilInventory = event.getInventory();
         if (anvilInventory.getItem(1) != null)
-        if (!anvilInventory.getItem(1).getEnchantments().isEmpty() && (!(anvilInventory.getItem(1).getType() == Material.ENCHANTED_BOOK)) ) {
-                event.setResult(anvilInventory.getItem(0));
-            }
+            if (!anvilInventory.getItem(1).getEnchantments().isEmpty() && (!(anvilInventory.getItem(1).getType() == Material.ENCHANTED_BOOK)) ) {
+                    event.setResult(anvilInventory.getItem(0));
+                }
     }
 }
