@@ -12,6 +12,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Locale;
 import java.util.StringJoiner;
 
 public class CommandSkills implements CommandExecutor {
@@ -57,8 +58,8 @@ public class CommandSkills implements CommandExecutor {
             joiner.add("\n§e%s§r: Level §b%s §r(§b%s§r/§b%s§r)".formatted(
                     skillType.getName(),
                     level,
-                    (int) Math.floor(levelXp),
-                    (int) Math.floor(neededXp)
+                    String.format(Locale.US, "%,d", (int) Math.floor(levelXp)),
+                    String.format(Locale.US, "%,d", (int) Math.floor(neededXp))
             ));
         }
 
