@@ -160,9 +160,9 @@ public class SkillsManager {
             default -> null;
         };
     }
-    private class SkillWithXP {
-        private SkillType skillType;
-        private double xp;
+    private static class SkillWithXP {
+        private final SkillType skillType;
+        private final double xp;
         private SkillWithXP (SkillType skillType, double xp) {
             this.skillType = skillType;
             this.xp = xp;

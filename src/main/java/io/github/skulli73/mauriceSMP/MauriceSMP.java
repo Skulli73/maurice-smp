@@ -2,10 +2,7 @@ package io.github.skulli73.mauriceSMP;
 
 import io.github.skulli73.mauriceSMP.skills.SkillsManager;
 import io.github.skulli73.mauriceSMP.skills.commands.CommandManager;
-import io.github.skulli73.mauriceSMP.skills.listeners.AnvilListener;
-import io.github.skulli73.mauriceSMP.skills.listeners.EnchantmentListener;
-import io.github.skulli73.mauriceSMP.skills.listeners.EntityListener;
-import io.github.skulli73.mauriceSMP.skills.listeners.OnCraftListener;
+import io.github.skulli73.mauriceSMP.skills.listeners.*;
 import io.github.skulli73.mauriceSMP.skills.player.PlayerDataManager;
 import io.github.skulli73.mauriceSMP.skills.recipes.RecipeManager;
 import lombok.Getter;
@@ -40,6 +37,7 @@ public final class MauriceSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EntityListener(), this);
         getServer().getPluginManager().registerEvents(new EnchantmentListener(), this);
         getServer().getPluginManager().registerEvents(new AnvilListener(), this);
+        getServer().getPluginManager().registerEvents(new ItemListener(), this);
         playerDataManager =  new PlayerDataManager();
         commandManager = new CommandManager();
         skillsManager = new SkillsManager();

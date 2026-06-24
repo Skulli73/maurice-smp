@@ -13,10 +13,13 @@ import org.bukkit.event.*;
 import org.bukkit.event.block.CrafterCraftEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class OnCraftListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onCraftItem(CraftItemEvent event) { //crafting table
+        ItemStack itemStack = event.getRecipe().getResult();
         Player player = (Player) event.getWhoClicked();
         if (MauriceSMP.getInstance().getRecipeManager().isDisabled(event.getRecipe().getResult())) {
             event.getWhoClicked().sendMessage("§4This item is disabled.§!");
@@ -37,7 +40,7 @@ public class OnCraftListener implements Listener {
             return;
         if (event.getCursor().getType() != Material.AIR)
             return;
-        ItemStack itemStack = event.getRecipe().getResult();
+
         String itemName = itemStack.getType().name();
         //give xp
         if (skillsManager.getItemXpMap().containsKey(itemName)) {
@@ -56,4 +59,5 @@ public class OnCraftListener implements Listener {
             event.setCancelled(true);
         }
     }
+
 }
