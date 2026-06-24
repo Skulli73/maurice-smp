@@ -2,6 +2,7 @@ package io.github.skulli73.mauriceSMP;
 
 import io.github.skulli73.mauriceSMP.skills.SkillsManager;
 import io.github.skulli73.mauriceSMP.skills.commands.CommandManager;
+import io.github.skulli73.mauriceSMP.skills.listeners.EnchantmentTableListener;
 import io.github.skulli73.mauriceSMP.skills.listeners.EntityListener;
 import io.github.skulli73.mauriceSMP.skills.listeners.OnCraftListener;
 import io.github.skulli73.mauriceSMP.skills.player.PlayerDataManager;
@@ -37,6 +38,7 @@ public final class MauriceSMP extends JavaPlugin {
         this.saveDefaultConfig();
         getServer().getPluginManager().registerEvents(new OnCraftListener(), this);
         getServer().getPluginManager().registerEvents(new EntityListener(), this);
+        getServer().getPluginManager().registerEvents(new EnchantmentTableListener(), this);
         playerDataManager =  new PlayerDataManager();
         commandManager = new CommandManager();
         skillsManager = new SkillsManager();
