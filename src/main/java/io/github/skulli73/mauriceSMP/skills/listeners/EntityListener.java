@@ -5,26 +5,28 @@ import io.github.skulli73.mauriceSMP.skills.SkillType;
 import io.github.skulli73.mauriceSMP.skills.SkillsManager;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.projectiles.ProjectileSource;
 
 public class EntityListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
-    public void onCraftItem(EntityDamageEvent event) { //Bow XP when hitting something with a bow
-        if (event.getCause() == EntityDamageEvent.DamageCause.PROJECTILE) {
-            Entity hitEntity = event.getEntity();
-            Entity causingEntity = event.getDamageSource().getCausingEntity();
-            if (causingEntity instanceof Player) {
-                Player player = (Player) causingEntity;
-                double xp = (double) Math.round(calculateHorizontalDistance(causingEntity.getLocation(), hitEntity.getLocation())) /100;
-                if (xp > 1)
-                    xp = 1;
-                SkillsManager.addXP(player, SkillType.BOW, xp);
-            }
+    public void onCraftItem(ProjectileHitEvent event) { //Bow XP when hitting something with a bow
+        Entity hitEntity = event.getHitEntity();
+        if (hitEntity == null)
+            return;
+        ProjectileSource causingEntity = event.getEntity().getShooter();
+        if (causingEntity instanceof Player player && event.getEntity().getType() == EntityType.ARROW) {
+            double xp = (double) Math.round(calculateHorizontalDistance(player.getLocation(), hitEntity.getLocation())) / 100;
+            if (xp > 1)
+                xp = 1;
+            SkillsManager.addXP(player, SkillType.BOW, xp);
         }
     }
 
