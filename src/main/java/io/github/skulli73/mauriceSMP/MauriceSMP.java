@@ -2,14 +2,14 @@ package io.github.skulli73.mauriceSMP;
 
 import io.github.skulli73.mauriceSMP.skills.SkillsManager;
 import io.github.skulli73.mauriceSMP.skills.commands.CommandManager;
-import io.github.skulli73.mauriceSMP.skills.listeners.EnchantmentTableListener;
+import io.github.skulli73.mauriceSMP.skills.listeners.AnvilListener;
+import io.github.skulli73.mauriceSMP.skills.listeners.EnchantmentListener;
 import io.github.skulli73.mauriceSMP.skills.listeners.EntityListener;
 import io.github.skulli73.mauriceSMP.skills.listeners.OnCraftListener;
 import io.github.skulli73.mauriceSMP.skills.player.PlayerDataManager;
 import io.github.skulli73.mauriceSMP.skills.recipes.RecipeManager;
 import lombok.Getter;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -38,7 +38,8 @@ public final class MauriceSMP extends JavaPlugin {
         this.saveDefaultConfig();
         getServer().getPluginManager().registerEvents(new OnCraftListener(), this);
         getServer().getPluginManager().registerEvents(new EntityListener(), this);
-        getServer().getPluginManager().registerEvents(new EnchantmentTableListener(), this);
+        getServer().getPluginManager().registerEvents(new EnchantmentListener(), this);
+        getServer().getPluginManager().registerEvents(new AnvilListener(), this);
         playerDataManager =  new PlayerDataManager();
         commandManager = new CommandManager();
         skillsManager = new SkillsManager();
