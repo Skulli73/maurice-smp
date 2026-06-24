@@ -57,8 +57,8 @@ public class CommandSkills implements CommandExecutor {
             joiner.add("\n§e%s§r: Level §b%s §r(§b%s§r/§b%s§r)".formatted(
                     skillType.getName(),
                     level,
-                    levelXp,
-                    neededXp
+                    (int) Math.floor(levelXp),
+                    (int) Math.floor(neededXp)
             ));
         }
 
