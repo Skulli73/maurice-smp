@@ -87,3 +87,32 @@ custom_shaped_recipes:
     - redstone
     - redstone
   iron_horse_armor:
+    - iron_ingot
+    - air
+    - air
+    - iron_ingot
+    - iron_block
+    - iron_ingot
+    - iron_ingot
+    - air
+    - iron_ingot
+  golden_horse_armor:
+    - gold_ingot
+    - air
+    - air
+    - gold_ingot
+    - gold_block
+    - gold_ingot
+    - gold_ingot
+    - air
+    - gold_ingot
+  diamond_horse_armor:
+    - diamond
+    - air
+    - air
+    - diamond
+    - diamond_block
+    - diamond
+    - diamond
+    - air
+    - diamond
