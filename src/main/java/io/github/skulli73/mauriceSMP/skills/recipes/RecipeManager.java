@@ -77,8 +77,6 @@ public class RecipeManager {
                 i = 0;
                 for (String string : stringList) {
                     Material material2 = Material.getMaterial(string.toUpperCase());
-                    System.out.println(material2);
-                    System.out.println(recipeShape.charAt(i));
                     if (material2 != null && !material2.isAir())
                         recipe.setIngredient(recipeShape.charAt(i), material2);
                     i++;
