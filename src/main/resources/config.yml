@@ -66,3 +66,23 @@ disabled_recipes:
   - DIAMOND_SHOVEL
   - DIAMOND_HOE
 
+custom_unshaped_recipes:
+  quartz:
+    - diorite
+  1quartz:
+    - andesite
+    - andesite
+  brick 4:
+    - bricks
+
+custom_shaped_recipes:
+  glowstone_dust 8:
+    - redstone
+    - redstone
+    - redstone
+    - redstone
+    - glow_berries
+    - redstone
+    - redstone
+    - redstone
+    - redstone
