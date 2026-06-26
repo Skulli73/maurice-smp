@@ -213,7 +213,6 @@ public class SkillsManager {
 
             if (meta != null) {
                 meta.getPersistentDataContainer().set(key, PersistentDataType.BOOLEAN, true);
-                System.out.println(meta.getPersistentDataContainer().get(key, PersistentDataType.BOOLEAN));
             }
             item.setItemMeta(meta);
 

@@ -17,6 +17,7 @@ skill_categories:
     - IRON_HOE
   BOW:
     - BOW
+    - CROSSBOW
 
 gainable_enchantments:
   ARMOUR:
@@ -35,8 +36,76 @@ gainable_enchantments:
     - FORTUNE
     - UNBREAKING
   BOW:
-    - POWER
     - UNBREAKING
+
+bonus_enchantments:
+  ARMOUR:
+    IRON_HELMET:
+      - AQUA_AFFINITY
+      - RESPIRATION
+      - UNBREAKING
+    IRON_BOOTS:
+      - FEATHER_FALLING
+      - DEPTH_STRIDER
+      - UNBREAKING
+    IRON_LEGGINGS:
+      - SWIFT_SNEAK
+      - UNBREAKING
+    IRON_CHESTPLATE:
+      - UNBREAKING
+    COPPER_BOOTS:
+      - FROST_WALKER
+      - UNBREAKING
+
+  BLADESMITHING:
+    IRON_SWORD:
+      - SWEEPING_EDGE
+      - LOOTING
+      - FIRE_ASPECT
+      - UNBREAKING
+    IRON_SPEAR:
+      - SHARPNESS
+      - KNOCKBACK
+      - FIRE_ASPECT
+      - LUNGE
+      - UNBREAKING
+      - LOOTING
+  PICKAXE:
+    IRON_PICKAXE:
+      - UNBREAKING
+      - FORTUNE
+    COPPER_PICKAXE:
+      - SILK_TOUCH
+      - UNBREAKING
+    IRON_SHOVEL:
+      - UNBREAKING
+      - FORTUNE
+    COPPER_SHOVEL:
+      - SILK_TOUCH
+      - UNBREAKING
+  AXE:
+    IRON_AXE:
+      - UNBREAKING
+      - FORTUNE
+    COPPER_AXE:
+      - SILK_TOUCH
+      - UNBREAKING
+  HOE:
+    IRON_HOE:
+      - UNBREAKING
+      - FORTUNE
+    COPPER_HOE:
+      - SILK_TOUCH
+      - UNBREAKING
+  BOW:
+    BOW:
+      - FLAME
+      - POWER
+      - UNBREAKING
+    CROSSBOW:
+      - PIERCING
+      - UNBREAKING
+      - QUICK_CHARGE
 
 gainable_xp:
   ARMOUR:
