@@ -12,6 +12,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class SkillsManager {
     private final List<Skill> skills = new ArrayList<>();
     @Getter
     private final Map<String, List<SkillWithXP>> itemXpMap = new HashMap<>();
+    private final Map<String, List<EnchantmentWithSkill>> bonusEnchantmentMap = new HashMap<>();
 
     public SkillsManager() {
         this.config = MauriceSMP.getInstance().getConfig();
@@ -52,6 +54,21 @@ public class SkillsManager {
                     list.add(new SkillWithXP(skillType, value));
                     itemXpMap.put(key, list);
                 }
+            }
+        }
+        for (SkillType skillType : SkillType.values()) {
+            ConfigurationSection gainableXPSection = config.getConfigurationSection("bonus_enchantments." + skillType.getId());
+            if (gainableXPSection == null)
+                continue;
+            for (String key : gainableXPSection.getKeys(false)) {
+                List<EnchantmentWithSkill> enchantmentWithSkills = new ArrayList<>();
+                for (String enchantmentString : gainableXPSection.getStringList(key)) {
+                    Enchantment enchantment = getEnchantment(enchantmentString);
+                    if (enchantment == null)
+                        continue;
+                    enchantmentWithSkills.add(new EnchantmentWithSkill(enchantment, skillType));
+                }
+                bonusEnchantmentMap.put(key, enchantmentWithSkills);
             }
         }
     }
@@ -160,12 +177,49 @@ public class SkillsManager {
             default -> null;
         };
     }
+
+    public boolean hasBonusEnchantments (String item) {
+        return bonusEnchantmentMap.containsKey(item);
+    }
+
+    public boolean hasBonusEnchantments (ItemStack item) {
+        return hasBonusEnchantments(item.getType().name());
+    }
+
+    public ItemStack enchantItemBonus (ItemStack item, double bonusSkill, Player player) {
+        if (hasBonusEnchantments(item))
+            for (EnchantmentWithSkill enchantmentWithSkill : bonusEnchantmentMap.get(item.getType().name())) {
+                Enchantment enchantment = enchantmentWithSkill.enchantment;
+                if (enchantment == null)
+                    continue;
+                double skillLevel = SkillsManager.getLevel(player, enchantmentWithSkill.skillType) + bonusSkill;
+                int skillLevelRandom = (int)Math.floor(skillLevel + Math.random()*10-5);
+                int enchantmentLevel = Math.round(skillLevelRandom * ((float) enchantment.getMaxLevel() /13));
+                if (enchantmentLevel > 0) {
+                    if (item.containsEnchantment(enchantment)) {
+                        item.addUnsafeEnchantment(enchantment, item.getEnchantmentLevel(enchantment) + enchantmentLevel);
+                    } else
+                        item.addUnsafeEnchantment(enchantment, enchantmentLevel);
+                }
+            }
+        return item;
+    }
+
     private static class SkillWithXP {
         private final SkillType skillType;
         private final double xp;
         private SkillWithXP (SkillType skillType, double xp) {
             this.skillType = skillType;
             this.xp = xp;
+        }
+    }
+
+    private static class EnchantmentWithSkill {
+        private final SkillType skillType;
+        private final Enchantment enchantment;
+        private EnchantmentWithSkill (Enchantment enchantment, SkillType skillType) {
+            this.skillType = skillType;
+            this.enchantment = enchantment;
         }
     }
 }
