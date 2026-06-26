@@ -1,5 +1,6 @@
 package io.github.skulli73.mauriceSMP;
 
+import io.github.skulli73.mauriceSMP.skills.EntityManager;
 import io.github.skulli73.mauriceSMP.skills.SkillsManager;
 import io.github.skulli73.mauriceSMP.skills.commands.CommandManager;
 import io.github.skulli73.mauriceSMP.skills.listeners.*;
@@ -24,6 +25,8 @@ public final class MauriceSMP extends JavaPlugin {
     @Getter
     private RecipeManager recipeManager;
     @Getter
+    private EntityManager entityManager;
+    @Getter
     private final String DATA_PATH = getDataFolder().getAbsolutePath() + File.separator + "player" + File.separator + "%s.json";
     public MauriceSMP () {
         super();
@@ -42,6 +45,7 @@ public final class MauriceSMP extends JavaPlugin {
         commandManager = new CommandManager();
         skillsManager = new SkillsManager();
         recipeManager = new RecipeManager();
+        entityManager = new EntityManager();
     }
 
     @Override

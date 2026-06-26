@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class RecipeManager {
     private FileConfiguration config;
-    private List<String> disabledRecipes = new ArrayList<>(); //uncraftable items
+    private List<String> disabledRecipes; //uncraftable items
     private Map<String, Integer> amountOfRecipes = new HashMap<>();
     public RecipeManager () {
         this.config = MauriceSMP.getInstance().getConfig();

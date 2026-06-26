@@ -11,13 +11,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.projectiles.ProjectileSource;
 
 public class EntityListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
-    public void onCraftItem(ProjectileHitEvent event) { //Bow XP when hitting something with a bow
+    public void onProjectileHit(ProjectileHitEvent event) { //Bow XP when hitting something with a bow
         Entity hitEntity = event.getHitEntity();
         if (hitEntity == null)
             return;
@@ -32,5 +33,10 @@ public class EntityListener implements Listener {
 
     private double calculateHorizontalDistance (Location l1, Location l2) {
         return Math.sqrt(Math.pow(l1.getX() - l2.getX(), 2) + Math.pow(l1.getZ() - l2.getZ(), 2));
+    }
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onEntitySpawn (EntitySpawnEvent event) {
+        if (MauriceSMP.getInstance().getEntityManager().isDisabled(event.getEntity()))
+            event.setCancelled(true);
     }
 }

@@ -66,6 +66,9 @@ disabled_recipes:
   - DIAMOND_SHOVEL
   - DIAMOND_HOE
 
+disabled_entities:
+  - IRON_GOLEM
+
 custom_unshaped_recipes:
   quartz:
     - diorite
