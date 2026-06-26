@@ -5,14 +5,16 @@ import io.github.skulli73.mauriceSMP.skills.player.FunPlayer;
 import lombok.Getter;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,10 +28,12 @@ public class SkillsManager {
     @Getter
     private final Map<String, List<SkillWithXP>> itemXpMap = new HashMap<>();
     private final Map<String, List<EnchantmentWithSkill>> bonusEnchantmentMap = new HashMap<>();
+    private final NamespacedKey key;
 
     public SkillsManager() {
         this.config = MauriceSMP.getInstance().getConfig();
         importConfigs();
+        key = new NamespacedKey(MauriceSMP.getInstance(), "bonus-enchanted");
     }
     private void importConfigs() {
         for (SkillType skillType : SkillType.values()) {
@@ -183,18 +187,20 @@ public class SkillsManager {
     }
 
     public boolean hasBonusEnchantments (ItemStack item) {
+        if (item == null || (item.getItemMeta() != null && item.getItemMeta().getPersistentDataContainer().has(key)))
+            return false;
         return hasBonusEnchantments(item.getType().name());
     }
 
     public ItemStack enchantItemBonus (ItemStack item, double bonusSkill, Player player) {
-        if (hasBonusEnchantments(item))
+        if (hasBonusEnchantments(item)) {
             for (EnchantmentWithSkill enchantmentWithSkill : bonusEnchantmentMap.get(item.getType().name())) {
                 Enchantment enchantment = enchantmentWithSkill.enchantment;
                 if (enchantment == null)
                     continue;
                 double skillLevel = SkillsManager.getLevel(player, enchantmentWithSkill.skillType) + bonusSkill;
-                int skillLevelRandom = (int)Math.floor(skillLevel + Math.random()*10-5);
-                int enchantmentLevel = Math.round(skillLevelRandom * ((float) enchantment.getMaxLevel() /13));
+                int skillLevelRandom = (int) Math.floor(skillLevel + Math.random() * 10 - 5);
+                int enchantmentLevel = Math.round(skillLevelRandom * ((float) enchantment.getMaxLevel() / 13));
                 if (enchantmentLevel > 0) {
                     if (item.containsEnchantment(enchantment)) {
                         item.addUnsafeEnchantment(enchantment, item.getEnchantmentLevel(enchantment) + enchantmentLevel);
@@ -202,6 +208,16 @@ public class SkillsManager {
                         item.addUnsafeEnchantment(enchantment, enchantmentLevel);
                 }
             }
+
+            ItemMeta meta = item.getItemMeta();
+
+            if (meta != null) {
+                meta.getPersistentDataContainer().set(key, PersistentDataType.BOOLEAN, true);
+                System.out.println(meta.getPersistentDataContainer().get(key, PersistentDataType.BOOLEAN));
+            }
+            item.setItemMeta(meta);
+
+        }
         return item;
     }
 

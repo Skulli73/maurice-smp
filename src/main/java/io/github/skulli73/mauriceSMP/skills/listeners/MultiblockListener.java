@@ -40,7 +40,7 @@ public class MultiblockListener implements Listener {
                     }
                 }
                 if (toEnchant == null) {
-                    player.sendMessage("§4Please put an item with bonus enchantments into the machine.§!");
+                    player.sendMessage("§4Please put an item with possible bonus enchantments into the machine.§!");
                     event.setCancelled(true);
                     player.playSound(player, Sound.ENTITY_VILLAGER_HURT, 1, 1);
                     return;
