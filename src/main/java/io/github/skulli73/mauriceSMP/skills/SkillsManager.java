@@ -9,7 +9,6 @@ import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -28,14 +27,23 @@ public class SkillsManager {
     @Getter
     private final Map<String, List<SkillWithXP>> itemXpMap = new HashMap<>();
     private final Map<String, List<EnchantmentWithSkill>> bonusEnchantmentMap = new HashMap<>();
-    private final NamespacedKey key;
+    private final NamespacedKey bonusEnchantedKey;
+    private final NamespacedKey loggingEnchantmentKey;
+    private final NamespacedKey veinMiningEnchantmentKey;
+    private List<String> veinMinerItems;
+    private List<String> lumberaxeItems;
 
     public SkillsManager() {
         this.config = MauriceSMP.getInstance().getConfig();
         importConfigs();
-        key = new NamespacedKey(MauriceSMP.getInstance(), "bonus-enchanted");
+        bonusEnchantedKey = new NamespacedKey(MauriceSMP.getInstance(), "bonus-enchanted");
+        loggingEnchantmentKey = new NamespacedKey(MauriceSMP.getInstance(), "logging-enchantment");
+        veinMiningEnchantmentKey = new NamespacedKey(MauriceSMP.getInstance(), "veinmining-enchantment");
+
     }
     private void importConfigs() {
+        veinMinerItems = config.getStringList("vein_miner_items");
+        lumberaxeItems = config.getStringList("lumber_axe_items");
         for (SkillType skillType : SkillType.values()) {
             List<String> items = config.getStringList("skill_categories." + skillType.getId());
             List<String> enchantmentsString = config.getStringList("gainable_enchantments." + skillType.getId());
@@ -187,7 +195,7 @@ public class SkillsManager {
     }
 
     public boolean hasBonusEnchantments (ItemStack item) {
-        if (item == null || (item.getItemMeta() != null && item.getItemMeta().getPersistentDataContainer().has(key)))
+        if (item == null || (item.getItemMeta() != null && item.getItemMeta().getPersistentDataContainer().has(bonusEnchantedKey)))
             return false;
         return hasBonusEnchantments(item.getType().name());
     }
@@ -208,18 +216,39 @@ public class SkillsManager {
                         item.addUnsafeEnchantment(enchantment, enchantmentLevel);
                 }
             }
-
             ItemMeta meta = item.getItemMeta();
+            String materialName = item.getType().name();
+            if (lumberaxeItems.contains(materialName) && meta != null) {
+                double skillLevel = SkillsManager.getLevel(player, SkillType.AXE);
+                int skillLevelRandom = (int) Math.floor(skillLevel + Math.random() * 10 - 5);
+                if (skillLevelRandom >= 10) {
+                    List<String> lore = meta.getLore();
+                    if (lore == null)
+                        lore = new ArrayList<>();
+                    lore.add("§7Logging§!");
+                    meta.setLore(lore);
+                    meta.getPersistentDataContainer().set(loggingEnchantmentKey, PersistentDataType.BOOLEAN, true);
+                }
+            }
+
+
 
             if (meta != null) {
-                meta.getPersistentDataContainer().set(key, PersistentDataType.BOOLEAN, true);
+                meta.getPersistentDataContainer().set(bonusEnchantedKey, PersistentDataType.BOOLEAN, true);
             }
             item.setItemMeta(meta);
 
         }
         return item;
     }
-
+    public boolean isLumberAxe (ItemStack itemStack) {
+        ItemMeta meta = itemStack.getItemMeta();
+        if (meta == null)
+            return false;
+        PersistentDataContainer persistentDataContainer = meta.getPersistentDataContainer();
+        System.out.println(persistentDataContainer.getKeys());
+        return persistentDataContainer.has(loggingEnchantmentKey) && Boolean.TRUE.equals(persistentDataContainer.get(loggingEnchantmentKey, PersistentDataType.BOOLEAN));
+    }
     private static class SkillWithXP {
         private final SkillType skillType;
         private final double xp;
