@@ -70,6 +70,10 @@ bonus_enchantments:
       - LUNGE
       - UNBREAKING
       - LOOTING
+    MACE:
+      - WIND_BURST
+      - UNBREAKING
+      - FIRE_ASPECT
   PICKAXE:
     IRON_PICKAXE:
       - UNBREAKING
