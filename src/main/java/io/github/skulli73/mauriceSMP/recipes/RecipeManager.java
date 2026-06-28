@@ -1,29 +1,25 @@
-package io.github.skulli73.mauriceSMP.skills.recipes;
+package io.github.skulli73.mauriceSMP.recipes;
 
 import io.github.skulli73.mauriceSMP.MauriceSMP;
-import io.github.skulli73.mauriceSMP.skills.SkillsManager;
+import io.github.skulli73.mauriceSMP.customItems.ItemManager;
+import io.github.skulli73.mauriceSMP.customItems.item.AbstractCustomItem;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.inventory.CraftingRecipe;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.ShapelessRecipe;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.inventory.*;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RecipeManager {
     private FileConfiguration config;
     private List<String> disabledRecipes; //uncraftable items
     private Map<String, Integer> amountOfRecipes = new HashMap<>();
+    @Getter
+    private Set<Recipe> recipes = new HashSet<>();
     public RecipeManager () {
         this.config = MauriceSMP.getInstance().getConfig();
         disabledRecipes = config.getStringList("disabled_recipes");
@@ -41,6 +37,7 @@ public class RecipeManager {
                 }
 
                 Bukkit.addRecipe(recipe);
+                recipes.add(recipe);
             }
 
         ConfigurationSection shapedRecipesSection = config.getConfigurationSection("custom_shaped_recipes");
@@ -83,6 +80,7 @@ public class RecipeManager {
                 }
 
                 Bukkit.addRecipe(recipe);
+                recipes.add(recipe);
             }
     }
 
@@ -107,10 +105,19 @@ public class RecipeManager {
         amountOfRecipes.put(newKey, index);
         NamespacedKey namespacedKey = new NamespacedKey(MauriceSMP.getInstance() ,newKey + index);
         Material material = Material.getMaterial(newKey.toUpperCase());
-        if (material == null)
-            return null;
-        ItemStack item = new ItemStack(material);
-        item.setAmount(amount);
+        ItemStack item;
+        if (material == null) {
+            ItemManager itemManager = MauriceSMP.getInstance().getItemManager();
+            AbstractCustomItem customItem = itemManager.stringToCustomItem(newKey);
+            if (customItem != null) {
+                item = customItem.getItem();
+            } else
+                return null;
+        } else {
+            item = new ItemStack(material);
+            item.setAmount(amount);
+        }
+
         CraftingRecipe recipe;
         if (shapeless)
             recipe = new ShapelessRecipe(namespacedKey, item);

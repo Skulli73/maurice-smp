@@ -11,6 +11,7 @@ skill_categories:
   PICKAXE:
     - IRON_PICKAXE
     - IRON_SHOVEL
+    - DIAMOND_PICKAXE
   AXE:
     - IRON_AXE
   HOE:
@@ -124,6 +125,7 @@ gainable_xp:
   PICKAXE:
     IRON_PICKAXE: 0.375
     IRON_SHOVEL: 0.125
+    DIAMOND_PICKAXE: 1
   AXE:
     IRON_AXE: 0.375
   HOE:
@@ -192,6 +194,16 @@ custom_shaped_recipes:
     - diamond
     - air
     - diamond
+  EXPLOSIVE_PICKAXE:
+    - TNT
+    - diamond_block
+    - TNT
+    - air
+    - STICK
+    - air
+    - air
+    - STICK
+    - air
 lumber_axe_items:
   - IRON_AXE
   - COPPER_AXE

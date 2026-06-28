@@ -12,16 +12,15 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
-public class OnBlockBreakListener implements Listener {
+public class LumberaxeListener implements Listener {
     private BlockMassDetectionService detectionService;
     private boolean currentlyBreaking = false;
     private Set<String> lumberAxeBlocks = new HashSet<>();
     private Set<String> veinMinerBlocks = new HashSet<>();
-    public OnBlockBreakListener () {
+    public LumberaxeListener() {
         detectionService = new BlockMassDetectionService();
         lumberAxeBlocks.addAll(MauriceSMP.getInstance().getConfig().getStringList("lumber_axe_blocks"));
         veinMinerBlocks.addAll(MauriceSMP.getInstance().getConfig().getStringList("vein_miner_blocks"));

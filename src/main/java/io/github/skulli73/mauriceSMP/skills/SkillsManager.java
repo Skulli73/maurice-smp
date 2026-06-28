@@ -25,7 +25,7 @@ public class SkillsManager {
     @Getter
     private final List<Skill> skills = new ArrayList<>();
     @Getter
-    private final Map<String, List<SkillWithXP>> itemXpMap = new HashMap<>();
+    private final Map<String, List<SkillWithNumber>> itemXpMap = new HashMap<>();
     private final Map<String, List<EnchantmentWithSkill>> bonusEnchantmentMap = new HashMap<>();
     private final NamespacedKey bonusEnchantedKey;
     private final NamespacedKey loggingEnchantmentKey;
@@ -60,10 +60,10 @@ public class SkillsManager {
             for (String key : gainableXPSection.getKeys(false)) {
                 double value = gainableXPSection.getDouble(key);
                 if (itemXpMap.containsKey(key)) {
-                    itemXpMap.get(key).add(new SkillWithXP(skillType, value));
+                    itemXpMap.get(key).add(new SkillWithNumber(skillType, value));
                 } else {
-                    ArrayList<SkillWithXP> list = new ArrayList<>();
-                    list.add(new SkillWithXP(skillType, value));
+                    ArrayList<SkillWithNumber> list = new ArrayList<>();
+                    list.add(new SkillWithNumber(skillType, value));
                     itemXpMap.put(key, list);
                 }
             }
@@ -88,8 +88,8 @@ public class SkillsManager {
     public void addXPForCrafting (Player player, String itemName) {
         if (!itemXpMap.containsKey(itemName))
             return;
-        for (SkillWithXP skillWithXP : itemXpMap.get(itemName)) {
-            SkillsManager.addXP(player, skillWithXP.skillType, skillWithXP.xp);
+        for (SkillWithNumber skillWithXP : itemXpMap.get(itemName)) {
+            SkillsManager.addXP(player, skillWithXP.getSkillType(), skillWithXP.getXp());
         }
     }
 
@@ -271,14 +271,7 @@ public class SkillsManager {
         PersistentDataContainer persistentDataContainer = meta.getPersistentDataContainer();
         return persistentDataContainer.has(veinMiningEnchantmentKey) && Boolean.TRUE.equals(persistentDataContainer.get(veinMiningEnchantmentKey, PersistentDataType.BOOLEAN));
     }
-    private static class SkillWithXP {
-        private final SkillType skillType;
-        private final double xp;
-        private SkillWithXP (SkillType skillType, double xp) {
-            this.skillType = skillType;
-            this.xp = xp;
-        }
-    }
+
 
     private static class EnchantmentWithSkill {
         private final SkillType skillType;

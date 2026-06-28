@@ -1,11 +1,13 @@
 package io.github.skulli73.mauriceSMP;
 
+import io.github.skulli73.mauriceSMP.customItems.ItemManager;
+import io.github.skulli73.mauriceSMP.customItems.listener.OnBlockBreakListener;
 import io.github.skulli73.mauriceSMP.skills.EntityManager;
 import io.github.skulli73.mauriceSMP.skills.SkillsManager;
 import io.github.skulli73.mauriceSMP.skills.commands.CommandManager;
 import io.github.skulli73.mauriceSMP.skills.listeners.*;
 import io.github.skulli73.mauriceSMP.skills.player.PlayerDataManager;
-import io.github.skulli73.mauriceSMP.skills.recipes.RecipeManager;
+import io.github.skulli73.mauriceSMP.recipes.RecipeManager;
 import lombok.Getter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,6 +29,8 @@ public final class MauriceSMP extends JavaPlugin {
     @Getter
     private EntityManager entityManager;
     @Getter
+    private ItemManager itemManager;
+    @Getter
     private final String DATA_PATH = getDataFolder().getAbsolutePath() + File.separator + "player" + File.separator + "%s.json";
     public MauriceSMP () {
         super();
@@ -42,10 +46,12 @@ public final class MauriceSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AnvilListener(), this);
         getServer().getPluginManager().registerEvents(new ItemListener(), this);
         getServer().getPluginManager().registerEvents(new MultiblockListener(), this);
+        getServer().getPluginManager().registerEvents(new LumberaxeListener(), this);
         getServer().getPluginManager().registerEvents(new OnBlockBreakListener(), this);
         playerDataManager =  new PlayerDataManager();
         commandManager = new CommandManager();
         skillsManager = new SkillsManager();
+        itemManager = new ItemManager();
         recipeManager = new RecipeManager();
         entityManager = new EntityManager();
     }
