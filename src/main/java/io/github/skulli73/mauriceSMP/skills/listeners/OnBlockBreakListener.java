@@ -11,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,15 +19,32 @@ import java.util.Set;
 public class OnBlockBreakListener implements Listener {
     private BlockMassDetectionService detectionService;
     private boolean currentlyBreaking = false;
+    private Set<String> lumberAxeBlocks = new HashSet<>();
+    private Set<String> veinMinerBlocks = new HashSet<>();
     public OnBlockBreakListener () {
         detectionService = new BlockMassDetectionService();
+        lumberAxeBlocks.addAll(MauriceSMP.getInstance().getConfig().getStringList("lumber_axe_blocks"));
+        veinMinerBlocks.addAll(MauriceSMP.getInstance().getConfig().getStringList("vein_miner_blocks"));
     }
     @EventHandler(priority = EventPriority.HIGH)
     public void onBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
+        if (player.isSneaking())
+            return;
         ItemStack item = player.getInventory().getItemInMainHand();
         SkillsManager skillsManager = MauriceSMP.getInstance().getSkillsManager();
-        if (skillsManager.isLumberAxe(item) && !currentlyBreaking) {
+        Block destroyed = event.getBlock();
+        if (lumberAxeBlocks.contains(destroyed.getType().name()) && skillsManager.isLumberAxe(item) && !currentlyBreaking) {
+            currentlyBreaking = true;
+            Set<Block> blocks = detectionService.identifyTreeStructure(destroyed);
+            for (Block block : blocks) {
+                if (player.getInventory().getItemInMainHand().getType().isAir())
+                    break;
+                player.breakBlock(block);
+            }
+            currentlyBreaking = false;
+        }
+        if (veinMinerBlocks.contains(destroyed.getType().name()) && skillsManager.isVeinMiner(item) && !currentlyBreaking ) {
             currentlyBreaking = true;
             Set<Block> blocks = detectionService.identifyTreeStructure(event.getBlock());
             for (Block block : blocks) {

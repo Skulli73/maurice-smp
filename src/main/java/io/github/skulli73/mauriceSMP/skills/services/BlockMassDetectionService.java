@@ -32,11 +32,16 @@ public final class BlockMassDetectionService {
                 continue;
 
             visited.add(current);
-
-            for (BlockFace face : BlockFace.values()) {
-                Block block =current.getRelative(face);
-                if (isMatchingLog(block, sourceType) && !visited.contains(block))
-                    queue.add(current.getRelative(face));
+            for (int j = -1; j < 2; j++) {
+                for (int k = -1; k < 2; k++) {
+                    for (int l = -1; l < 2; l++) {
+                        if (j == 0 && k == 0 && l == 0)
+                            continue;
+                        Block block = current.getRelative(j, k, l);
+                        if (isMatchingLog(block, sourceType) && !visited.contains(block))
+                            queue.add(block);
+                    }
+                }
             }
         }
 
@@ -47,6 +52,7 @@ public final class BlockMassDetectionService {
     private boolean isMatchingLog(Block block, Material logType) {
         return block.getType() == logType;
     }
+
 
 }
 

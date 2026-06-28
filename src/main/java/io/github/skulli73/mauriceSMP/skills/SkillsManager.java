@@ -230,6 +230,18 @@ public class SkillsManager {
                     meta.getPersistentDataContainer().set(loggingEnchantmentKey, PersistentDataType.BOOLEAN, true);
                 }
             }
+            if (veinMinerItems.contains(materialName) && meta != null) {
+                double skillLevel = SkillsManager.getLevel(player, SkillType.PICKAXE);
+                int skillLevelRandom = (int) Math.floor(skillLevel + Math.random() * 10 - 5);
+                if (skillLevelRandom >= 10) {
+                    List<String> lore = meta.getLore();
+                    if (lore == null)
+                        lore = new ArrayList<>();
+                    lore.add("§7Vein Miner§!");
+                    meta.setLore(lore);
+                    meta.getPersistentDataContainer().set(veinMiningEnchantmentKey, PersistentDataType.BOOLEAN, true);
+                }
+            }
 
 
 
@@ -246,8 +258,14 @@ public class SkillsManager {
         if (meta == null)
             return false;
         PersistentDataContainer persistentDataContainer = meta.getPersistentDataContainer();
-        System.out.println(persistentDataContainer.getKeys());
         return persistentDataContainer.has(loggingEnchantmentKey) && Boolean.TRUE.equals(persistentDataContainer.get(loggingEnchantmentKey, PersistentDataType.BOOLEAN));
+    }
+    public boolean isVeinMiner (ItemStack itemStack) {
+        ItemMeta meta = itemStack.getItemMeta();
+        if (meta == null)
+            return false;
+        PersistentDataContainer persistentDataContainer = meta.getPersistentDataContainer();
+        return persistentDataContainer.has(veinMiningEnchantmentKey) && Boolean.TRUE.equals(persistentDataContainer.get(veinMiningEnchantmentKey, PersistentDataType.BOOLEAN));
     }
     private static class SkillWithXP {
         private final SkillType skillType;

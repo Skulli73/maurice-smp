@@ -192,3 +192,26 @@ custom_shaped_recipes:
     - diamond
     - air
     - diamond
+lumber_axe_items:
+  - IRON_AXE
+  - COPPER_AXE
+vein_miner_items:
+  - IRON_PICKAXE
+  - COPPER_PICKAXE
+lumber_axe_blocks:
+  - OAK_LOG
+  - BIRCH_LOG
+  - ACACIA_LOG
+  - JUNGLE_LOG
+  - MANGROVE_LOG
+  - DARK_OAK_LOG
+  - CHERRY_LOG
+  - PALE_OAK_LOG
+vein_miner_blocks:
+  - DIAMOND_ORE
+  - IRON_ORE
+  - GOLD_ORE
+  - COPPER_ORE
+  - COAL_ORE
+  - REDSTONE_ORE
+maxTreeSize: 100
