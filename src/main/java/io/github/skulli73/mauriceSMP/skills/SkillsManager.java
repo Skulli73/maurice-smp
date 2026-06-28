@@ -211,7 +211,11 @@ public class SkillsManager {
                 int enchantmentLevel = Math.round(skillLevelRandom * ((float) enchantment.getMaxLevel() / 13));
                 if (enchantmentLevel > 0) {
                     if (item.containsEnchantment(enchantment)) {
-                        item.addUnsafeEnchantment(enchantment, item.getEnchantmentLevel(enchantment) + enchantmentLevel);
+                        int currentLevel = item.getEnchantmentLevel(enchantment);
+                        int min = Math.min(currentLevel, enchantmentLevel);
+                        int max = Math.max(currentLevel, enchantmentLevel);
+                        if (min > 1)
+                            item.addUnsafeEnchantment(enchantment, max + (int) Math.floor((double) min / 2));
                     } else
                         item.addUnsafeEnchantment(enchantment, enchantmentLevel);
                 }
