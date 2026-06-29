@@ -92,6 +92,13 @@ public class SkillsManager {
             SkillsManager.addXP(player, skillWithXP.getSkillType(), skillWithXP.getXp());
         }
     }
+    public void addXPForCrafting (Player player, String itemName, double multiplier) {
+        if (!itemXpMap.containsKey(itemName))
+            return;
+        for (SkillWithNumber skillWithXP : itemXpMap.get(itemName)) {
+            SkillsManager.addXP(player, skillWithXP.getSkillType(), skillWithXP.getXp()*multiplier);
+        }
+    }
 
     public Map<SkillType, SkillData> getEmptySkillDataMap() {
         Map<SkillType, SkillData> result = new HashMap<>();
@@ -253,7 +260,7 @@ public class SkillsManager {
                 meta.getPersistentDataContainer().set(bonusEnchantedKey, PersistentDataType.BOOLEAN, true);
             }
             item.setItemMeta(meta);
-
+            addXPForCrafting(player, materialName, bonusSkill);
         }
         return item;
     }
