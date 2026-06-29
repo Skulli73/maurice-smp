@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 public enum SkillType {
     ARMOUR("ARMOUR", "Armouring"),
     BLADESMITHING("BLADESMITHING", "Bladesmithing"),
-    PICKAXE("PICKAXE", "Pickaxe-craft"),
+    PICKAXE("PICKAXE", "Mining"),
     AXE("AXE", "Forestry"),
     HOE("HOE", "Farming"),
     BOW("BOW", "Fletchery");
