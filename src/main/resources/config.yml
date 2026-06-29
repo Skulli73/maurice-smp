@@ -4,6 +4,7 @@ skill_categories:
     - IRON_CHESTPLATE
     - IRON_LEGGINGS
     - IRON_BOOTS
+    - COPPER_BOOTS
   BLADESMITHING:
     - IRON_SWORD
     - IRON_SPEAR
@@ -11,9 +12,15 @@ skill_categories:
   PICKAXE:
     - IRON_PICKAXE
     - IRON_SHOVEL
+    - COPPER_PICKAXE
+    - COPPER_SHOVEL
+    - GOLDEN_PICKAXE
+    - GOLDEN_SHOVEL
     - DIAMOND_PICKAXE
   AXE:
     - IRON_AXE
+    - COPPER_AXE
+    - GOLDEN_AXE
   HOE:
     - IRON_HOE
   BOW:
@@ -63,6 +70,9 @@ bonus_enchantments:
       - SWEEPING_EDGE
       - LOOTING
       - FIRE_ASPECT
+      - UNBREAKING
+    COPPER_SWORD:
+      - SILK_TOUCH
       - UNBREAKING
     IRON_SPEAR:
       - SHARPNESS

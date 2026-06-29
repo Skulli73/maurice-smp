@@ -36,7 +36,7 @@ public abstract class AbstractCustomItem {
                 lore = new ArrayList<>();
             }
             for (SkillWithNumber skill : getRequiredSkills()) {
-                lore.addFirst("§3Requires §lLevel " + skill.getXp() + " "+skill.getSkillType().getName() + "§! \n");
+                lore.addFirst("§3Requires §lLevel " + (int) skill.getXp() + " "+skill.getSkillType().getName() + "§! \n");
             }
             lore.addFirst("§i§8" + getName() + "§! \n");
             meta.getPersistentDataContainer().set(itemManager.getIdKey(), PersistentDataType.STRING, id);

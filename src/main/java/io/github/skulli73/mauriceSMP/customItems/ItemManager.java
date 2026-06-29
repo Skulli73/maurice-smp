@@ -35,6 +35,8 @@ public class ItemManager {
     public AbstractCustomItem itemStackToCustomItem (ItemStack itemStack) {
         ItemMeta meta = itemStack.getItemMeta();
         ItemManager itemManager = MauriceSMP.getInstance().getItemManager();
+        if (meta == null)
+            return null;
         PersistentDataContainer container = meta.getPersistentDataContainer();
         if (container.has(itemManager.getIdKey())) {
             Map<String, AbstractCustomItem> customItems = itemManager.getCustomItems();
