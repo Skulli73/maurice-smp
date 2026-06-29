@@ -3,3 +3,21 @@ version: '${version}'
 
 main: io.github.skulli73.mauriceSMP.MauriceSMP
 api-version: '26.1'
+
+commands:
+  addskillxp:
+    description: Add Skill XP
+    usage: /<command> <player> <amount> <skill>
+    permission: maurice-smp.skillmanagement
+  skills:
+    description: Show your skills
+    usage: /<command>
+
+permissions:
+  maurice-smp.*:
+    description: Gives access to all Maurice-SMP commands
+    children:
+      maurice-smp.skillmanagement: true
+  maurice-smp.skillmanagement:
+    description: Allows you to manage skills for other players
+    default: op

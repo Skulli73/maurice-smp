@@ -1,0 +1,248 @@
+skill_categories:
+  ARMOUR:
+    - IRON_HELMET
+    - IRON_CHESTPLATE
+    - IRON_LEGGINGS
+    - IRON_BOOTS
+    - COPPER_BOOTS
+  BLADESMITHING:
+    - IRON_SWORD
+    - IRON_SPEAR
+    - IRON_AXE
+  PICKAXE:
+    - IRON_PICKAXE
+    - IRON_SHOVEL
+    - COPPER_PICKAXE
+    - COPPER_SHOVEL
+    - GOLDEN_PICKAXE
+    - GOLDEN_SHOVEL
+    - DIAMOND_PICKAXE
+  AXE:
+    - IRON_AXE
+    - COPPER_AXE
+    - GOLDEN_AXE
+  HOE:
+    - IRON_HOE
+  BOW:
+    - BOW
+    - CROSSBOW
+
+gainable_enchantments:
+  ARMOUR:
+    - PROTECTION
+    - UNBREAKING
+  BLADESMITHING:
+    - SHARPNESS
+    - UNBREAKING
+  PICKAXE:
+    - EFFICIENCY
+    - UNBREAKING
+  AXE:
+    - EFFICIENCY
+    - UNBREAKING
+  HOE:
+    - FORTUNE
+    - UNBREAKING
+  BOW:
+    - UNBREAKING
+
+bonus_enchantments:
+  ARMOUR:
+    IRON_HELMET:
+      - AQUA_AFFINITY
+      - RESPIRATION
+      - UNBREAKING
+    IRON_BOOTS:
+      - FEATHER_FALLING
+      - DEPTH_STRIDER
+      - UNBREAKING
+    IRON_LEGGINGS:
+      - SWIFT_SNEAK
+      - UNBREAKING
+    IRON_CHESTPLATE:
+      - UNBREAKING
+    COPPER_BOOTS:
+      - FROST_WALKER
+      - UNBREAKING
+
+  BLADESMITHING:
+    IRON_SWORD:
+      - SWEEPING_EDGE
+      - LOOTING
+      - FIRE_ASPECT
+      - UNBREAKING
+    COPPER_SWORD:
+      - SILK_TOUCH
+      - UNBREAKING
+    IRON_SPEAR:
+      - SHARPNESS
+      - KNOCKBACK
+      - FIRE_ASPECT
+      - LUNGE
+      - UNBREAKING
+      - LOOTING
+    MACE:
+      - WIND_BURST
+      - UNBREAKING
+      - FIRE_ASPECT
+  PICKAXE:
+    IRON_PICKAXE:
+      - UNBREAKING
+      - FORTUNE
+    COPPER_PICKAXE:
+      - SILK_TOUCH
+      - UNBREAKING
+    IRON_SHOVEL:
+      - UNBREAKING
+      - FORTUNE
+    COPPER_SHOVEL:
+      - SILK_TOUCH
+      - UNBREAKING
+  AXE:
+    IRON_AXE:
+      - UNBREAKING
+      - FORTUNE
+    COPPER_AXE:
+      - SILK_TOUCH
+      - UNBREAKING
+  HOE:
+    IRON_HOE:
+      - UNBREAKING
+      - FORTUNE
+    COPPER_HOE:
+      - SILK_TOUCH
+      - UNBREAKING
+  BOW:
+    BOW:
+      - FLAME
+      - POWER
+      - UNBREAKING
+    CROSSBOW:
+      - PIERCING
+      - UNBREAKING
+      - QUICK_CHARGE
+
+gainable_xp:
+  ARMOUR:
+    IRON_HELMET: 1.875
+    IRON_BOOTS: 1.5
+    IRON_CHESTPLATE: 3
+    IRON_LEGGINGS: 2.6.25
+  BLADESMITHING:
+    IRON_SWORD: 0.75
+    IRON_AXE: 0.3
+    IRON_SPEAR: 0.375
+  PICKAXE:
+    IRON_PICKAXE: 1.125
+    IRON_SHOVEL: 0.375
+    DIAMOND_PICKAXE: 3
+  AXE:
+    IRON_AXE: 1.125
+  HOE:
+    IRON_HOE: 1.125
+
+disabled_recipes:
+  - ENCHANTING_TABLE
+  - DIAMOND_HELMET
+  - DIAMOND_CHESTPLATE
+  - DIAMOND_LEGGINGS
+  - DIAMOND_BOOTS
+  - DIAMOND_SPEAR
+  - DIAMOND_SHOVEL
+  - DIAMOND_HOE
+  - DIAMOND_PICKAXE
+  - DIAMOND_AXE
+  - DIAMOND_SWORD
+
+disabled_entities:
+  - IRON_GOLEM
+
+custom_unshaped_recipes:
+  quartz:
+    - diorite
+  1quartz:
+    - andesite
+    - andesite
+  brick 4:
+    - bricks
+
+custom_shaped_recipes:
+  glowstone_dust 8:
+    - redstone
+    - redstone
+    - redstone
+    - redstone
+    - glow_berries
+    - redstone
+    - redstone
+    - redstone
+    - redstone
+  iron_horse_armor:
+    - iron_ingot
+    - air
+    - air
+    - iron_ingot
+    - iron_block
+    - iron_ingot
+    - iron_ingot
+    - air
+    - iron_ingot
+  golden_horse_armor:
+    - gold_ingot
+    - air
+    - air
+    - gold_ingot
+    - gold_block
+    - gold_ingot
+    - gold_ingot
+    - air
+    - gold_ingot
+  diamond_horse_armor:
+    - diamond
+    - air
+    - air
+    - diamond
+    - diamond_block
+    - diamond
+    - diamond
+    - air
+    - diamond
+  EXPLOSIVE_PICKAXE:
+    - TNT
+    - diamond_block
+    - TNT
+    - air
+    - STICK
+    - air
+    - air
+    - STICK
+    - air
+lumber_axe_items:
+  - IRON_AXE
+  - COPPER_AXE
+vein_miner_items:
+  - IRON_PICKAXE
+  - COPPER_PICKAXE
+lumber_axe_blocks:
+  - OAK_LOG
+  - BIRCH_LOG
+  - ACACIA_LOG
+  - JUNGLE_LOG
+  - MANGROVE_LOG
+  - DARK_OAK_LOG
+  - CHERRY_LOG
+  - PALE_OAK_LOG
+vein_miner_blocks:
+  - DIAMOND_ORE
+  - IRON_ORE
+  - GOLD_ORE
+  - COPPER_ORE
+  - COAL_ORE
+  - REDSTONE_ORE
+  - DEEPSLATE_DIAMOND_ORE
+  - DEEPSLATE_IRON_ORE
+  - DEEPSLATE_GOLD_ORE
+  - DEEPSLATE_COPPER_ORE
+  - DEEPSLATE_COAL_ORE
+  - DEEPSLATE_REDSTONE_ORE
+maxTreeSize: 100
