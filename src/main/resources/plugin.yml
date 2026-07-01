@@ -7,10 +7,13 @@ api-version: '26.1'
 commands:
   addskillxp:
     description: Add Skill XP
-    usage: /<command> <player> <amount> <skill>
+    usage: /<command> <player>  <skill> <amount>
     permission: maurice-smp.skillmanagement
   skills:
     description: Show your skills
+    usage: /<command>
+  cf:
+    description: Ciro-Fun Commands
     usage: /<command>
 
 permissions:
@@ -20,4 +23,7 @@ permissions:
       maurice-smp.skillmanagement: true
   maurice-smp.skillmanagement:
     description: Allows you to manage skills for other players
-    default: op
+    default: false
+  maurice-smp.cf-admin:
+    description: Admin permissions for CiroFun
+    default: false

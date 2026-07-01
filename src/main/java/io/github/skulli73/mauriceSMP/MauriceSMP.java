@@ -5,7 +5,7 @@ import io.github.skulli73.mauriceSMP.customItems.listener.OnBlockBreakListener;
 import io.github.skulli73.mauriceSMP.dropsChanges.listener.DropsListener;
 import io.github.skulli73.mauriceSMP.skills.EntityManager;
 import io.github.skulli73.mauriceSMP.skills.SkillsManager;
-import io.github.skulli73.mauriceSMP.skills.commands.CommandManager;
+import io.github.skulli73.mauriceSMP.commands.CommandManager;
 import io.github.skulli73.mauriceSMP.skills.listeners.*;
 import io.github.skulli73.mauriceSMP.skills.player.PlayerDataManager;
 import io.github.skulli73.mauriceSMP.recipes.RecipeManager;

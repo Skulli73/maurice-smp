@@ -33,7 +33,6 @@ public class DropsListener implements Listener {
         BlockState broken = event.getBlockState();
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
-        System.out.println(broken.getType());
         if (broken.getBlockData() instanceof Ageable ageable && ageable.getAge() == ageable.getMaximumAge() && broken.getType() == Material.WHEAT) { //fortune for crops
             if (item.containsEnchantment(Enchantment.FORTUNE) && hoes.contains(item.getType())) {
                 int fortune = item.getEnchantmentLevel(Enchantment.FORTUNE);

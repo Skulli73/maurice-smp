@@ -1,10 +1,8 @@
-package io.github.skulli73.mauriceSMP.skills.commands;
+package io.github.skulli73.mauriceSMP.commands;
 
-import io.github.skulli73.mauriceSMP.MauriceSMP;
 import io.github.skulli73.mauriceSMP.skills.SkillData;
 import io.github.skulli73.mauriceSMP.skills.SkillType;
 import io.github.skulli73.mauriceSMP.skills.SkillUtils;
-import io.github.skulli73.mauriceSMP.skills.SkillsManager;
 import io.github.skulli73.mauriceSMP.skills.player.FunPlayer;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
