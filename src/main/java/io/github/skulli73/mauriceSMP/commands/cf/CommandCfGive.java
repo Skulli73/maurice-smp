@@ -76,7 +76,7 @@ public class CommandCfGive implements CfCommand {
             return results;
         }
         if (length == 2) {
-            String enteredItem = strings[2];
+            String enteredItem = strings[1];
             for (AbstractCustomItem customItem : MauriceSMP.getInstance().getItemManager().getCustomItems().values()) {
                 String itemName = customItem.getId().toLowerCase();
                 if (Objects.equals(enteredItem, "") || itemName.toLowerCase().startsWith(enteredItem.toLowerCase())) {
