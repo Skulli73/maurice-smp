@@ -17,6 +17,7 @@ import java.util.Set;
 public abstract class AbstractCustomItem {
     @Getter
     private final ItemStack item;
+    @Getter
     private final String id;
     @Getter
     private final Set<SkillWithNumber> requiredSkills = new HashSet<>();

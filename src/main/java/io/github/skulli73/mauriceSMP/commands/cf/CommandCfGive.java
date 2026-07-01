@@ -5,12 +5,15 @@ import io.github.skulli73.mauriceSMP.customItems.ItemManager;
 import io.github.skulli73.mauriceSMP.customItems.item.AbstractCustomItem;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CommandCfGive implements CfCommand {
     @Override
@@ -60,7 +63,30 @@ public class CommandCfGive implements CfCommand {
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        return List.of();
+        int length = strings.length;
+        List<String> results = new ArrayList<>();
+        if (length == 3) {
+            String enteredName = strings[1];
+            for (Player player : MauriceSMP.getInstance().getServer().getOnlinePlayers()) {
+                String playerName = player.getName().toLowerCase();
+                if (Objects.equals(enteredName, "") || playerName.toLowerCase().startsWith(enteredName.toLowerCase())) {
+                    results.add(player.getName());
+                }
+            }
+            return results;
+        }
+        if (length == 2) {
+            String enteredItem = strings[2];
+            for (AbstractCustomItem customItem : MauriceSMP.getInstance().getItemManager().getCustomItems().values()) {
+                String itemName = customItem.getId().toLowerCase();
+                if (Objects.equals(enteredItem, "") || itemName.toLowerCase().startsWith(enteredItem.toLowerCase())) {
+                    results.add(customItem.getId());
+                }
+            }
+            return results;
+        }
+        return results;
+
     }
 
     private boolean isNumeric(String str) {

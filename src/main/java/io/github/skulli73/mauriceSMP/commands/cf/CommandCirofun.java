@@ -26,8 +26,8 @@ public class CommandCirofun implements CommandExecutor, TabExecutor {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         int length = strings.length;
-        if (length > 1 && cfCommands.containsKey(strings[1])) {
-            return cfCommands.get(strings[1]).onTabComplete(commandSender, command, s, strings);
+        if (length > 1 && cfCommands.containsKey(strings[0])) {
+            return cfCommands.get(strings[0]).onTabComplete(commandSender, command, s, strings);
         } else if (length <= 1){
             return new ArrayList<>(cfCommands.keySet());
         }
