@@ -54,6 +54,7 @@ public final class MauriceSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnBlockBreakListener(), this);
         getServer().getPluginManager().registerEvents(new DropsListener(), this);
         getServer().getPluginManager().registerEvents(new VillagerListener(), this);
+        getServer().getPluginManager().registerEvents(new VehicleListener(), this);
         playerDataManager =  new PlayerDataManager();
         commandManager = new CommandManager();
         skillsManager = new SkillsManager();
@@ -61,6 +62,7 @@ public final class MauriceSMP extends JavaPlugin {
         recipeManager = new RecipeManager();
         entityManager = new EntityManager();
         villagerManager = new VillagerManager();
+
     }
 
     @Override
