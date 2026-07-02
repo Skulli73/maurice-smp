@@ -1,10 +1,14 @@
 package io.github.skulli73.mauriceSMP;
 
 import io.github.skulli73.mauriceSMP.customItems.ItemManager;
+import io.github.skulli73.mauriceSMP.customItems.guis.GUIManager;
+import io.github.skulli73.mauriceSMP.customItems.listener.ClickListener;
 import io.github.skulli73.mauriceSMP.customItems.listener.OnBlockBreakListener;
+import io.github.skulli73.mauriceSMP.dropsChanges.listener.DropsListener;
 import io.github.skulli73.mauriceSMP.skills.EntityManager;
 import io.github.skulli73.mauriceSMP.skills.SkillsManager;
-import io.github.skulli73.mauriceSMP.skills.commands.CommandManager;
+import io.github.skulli73.mauriceSMP.commands.CommandManager;
+import io.github.skulli73.mauriceSMP.skills.VillagerManager;
 import io.github.skulli73.mauriceSMP.skills.listeners.*;
 import io.github.skulli73.mauriceSMP.skills.player.PlayerDataManager;
 import io.github.skulli73.mauriceSMP.recipes.RecipeManager;
@@ -31,6 +35,10 @@ public final class MauriceSMP extends JavaPlugin {
     @Getter
     private ItemManager itemManager;
     @Getter
+    private VillagerManager villagerManager;
+    @Getter
+    private GUIManager guiManager;
+    @Getter
     private final String DATA_PATH = getDataFolder().getAbsolutePath() + File.separator + "player" + File.separator + "%s.json";
     public MauriceSMP () {
         super();
@@ -48,12 +56,18 @@ public final class MauriceSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MultiblockListener(), this);
         getServer().getPluginManager().registerEvents(new LumberaxeListener(), this);
         getServer().getPluginManager().registerEvents(new OnBlockBreakListener(), this);
+        getServer().getPluginManager().registerEvents(new DropsListener(), this);
+        getServer().getPluginManager().registerEvents(new VillagerListener(), this);
+        getServer().getPluginManager().registerEvents(new VehicleListener(), this);
+        getServer().getPluginManager().registerEvents(new ClickListener(), this);
         playerDataManager =  new PlayerDataManager();
         commandManager = new CommandManager();
         skillsManager = new SkillsManager();
         itemManager = new ItemManager();
         recipeManager = new RecipeManager();
         entityManager = new EntityManager();
+        villagerManager = new VillagerManager();
+        guiManager = new GUIManager();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package io.github.skulli73.mauriceSMP.customItems.item.items;
 
 import io.github.skulli73.mauriceSMP.customItems.item.AbstractCustomItem;
+import io.github.skulli73.mauriceSMP.customItems.item.Category;
 import io.github.skulli73.mauriceSMP.skills.SkillType;
 import io.github.skulli73.mauriceSMP.skills.SkillWithNumber;
 import org.bukkit.Material;
@@ -16,7 +17,7 @@ import java.util.Set;
 public class ExplosivePickaxe extends AbstractCustomItem {
     private static boolean breaking = false;
     public ExplosivePickaxe () {
-        super(getItemStack(), "EXPLOSIVE_PICKAXE");
+        super(getItemStack(), "EXPLOSIVE_PICKAXE", Category.TOOLS);
         super.getRequiredSkills().add(new SkillWithNumber(SkillType.PICKAXE, 3));
     }
     private static ItemStack getItemStack () {

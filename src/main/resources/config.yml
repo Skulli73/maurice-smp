@@ -246,3 +246,16 @@ vein_miner_blocks:
   - DEEPSLATE_COAL_ORE
   - DEEPSLATE_REDSTONE_ORE
 maxTreeSize: 100
+villager_enchantments_locking:
+  ARMOUR:
+    - PROTECTION
+  BLADESMITHING:
+    - SHARPNESS
+  PICKAXE:
+    - EFFICIENCY
+  AXE:
+
+  HOE:
+
+  BOW:
+    - POWER

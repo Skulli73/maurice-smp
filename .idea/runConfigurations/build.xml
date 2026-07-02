@@ -1,0 +1,47 @@
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>${shade.version}</version> <!-- The version must be at least 3.5.0 -->
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                        <!--
+                          If multiple plugins use AnvilGUI but use different AnvilGUI versions,
+                          one of the plugins functionality may break. To avoid these classpath
+                          conflicts, relocate AnvilGUI to your plugin's namespace.
+                        -->
+                        <relocations>
+                            <relocation>
+                                <pattern>net.wesjd.anvilgui</pattern>
+                                <shadedPattern>[YOUR_PLUGIN_PACKAGE].anvilgui</shadedPattern>
+                            </relocation>
+                        </relocations>
+
+                        <!--
+                          AnvilGUI works by loading the appropriate anvil implementation at
+                          runtime via reflection. When minimize JAR is enabled, the shade
+                          plugin will see no usages of the anvil implementation classes and
+                          omit them from the shaded artifacts. To solve this, add a filter
+                          that always includes the entire library.
+                        -->
+                        <filters>
+                            <filter>
+                                <artifact>*:*</artifact>
+                                <excludeDefaults>false</excludeDefaults>
+                                <includes>
+                                    <include>net/wesjd/anvilgui/**</include>
+                                </includes>
+                            </filter>
+                        </filters>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
