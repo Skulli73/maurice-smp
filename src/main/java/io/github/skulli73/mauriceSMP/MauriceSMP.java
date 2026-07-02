@@ -1,6 +1,8 @@
 package io.github.skulli73.mauriceSMP;
 
 import io.github.skulli73.mauriceSMP.customItems.ItemManager;
+import io.github.skulli73.mauriceSMP.customItems.guis.GUIManager;
+import io.github.skulli73.mauriceSMP.customItems.listener.ClickListener;
 import io.github.skulli73.mauriceSMP.customItems.listener.OnBlockBreakListener;
 import io.github.skulli73.mauriceSMP.dropsChanges.listener.DropsListener;
 import io.github.skulli73.mauriceSMP.skills.EntityManager;
@@ -35,6 +37,8 @@ public final class MauriceSMP extends JavaPlugin {
     @Getter
     private VillagerManager villagerManager;
     @Getter
+    private GUIManager guiManager;
+    @Getter
     private final String DATA_PATH = getDataFolder().getAbsolutePath() + File.separator + "player" + File.separator + "%s.json";
     public MauriceSMP () {
         super();
@@ -55,6 +59,7 @@ public final class MauriceSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DropsListener(), this);
         getServer().getPluginManager().registerEvents(new VillagerListener(), this);
         getServer().getPluginManager().registerEvents(new VehicleListener(), this);
+        getServer().getPluginManager().registerEvents(new ClickListener(), this);
         playerDataManager =  new PlayerDataManager();
         commandManager = new CommandManager();
         skillsManager = new SkillsManager();
@@ -62,7 +67,7 @@ public final class MauriceSMP extends JavaPlugin {
         recipeManager = new RecipeManager();
         entityManager = new EntityManager();
         villagerManager = new VillagerManager();
-
+        guiManager = new GUIManager();
     }
 
     @Override

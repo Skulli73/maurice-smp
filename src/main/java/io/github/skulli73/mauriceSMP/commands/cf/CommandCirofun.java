@@ -13,6 +13,7 @@ public class CommandCirofun implements CommandExecutor, TabExecutor {
     private Map<String, CfCommand> cfCommands = new HashMap<>();
     public CommandCirofun () {
         cfCommands.put("give", new CommandCfGive());
+        cfCommands.put("guide", new CommandCfGuide());
     }
 
     @Override
