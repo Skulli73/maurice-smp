@@ -153,6 +153,8 @@ disabled_recipes:
   - DIAMOND_PICKAXE
   - DIAMOND_AXE
   - DIAMOND_SWORD
+  - BLUE_ICE
+  - PACKED_ICE
 
 disabled_entities:
   - IRON_GOLEM
@@ -165,6 +167,9 @@ custom_unshaped_recipes:
     - andesite
   brick 4:
     - bricks
+    NETHERRACK:
+      - REDSTONE
+      - COBBLESTONE
 
 custom_shaped_recipes:
   glowstone_dust 8:
@@ -217,6 +222,27 @@ custom_shaped_recipes:
     - air
     - STICK
     - air
+  PRISMARINE_SHARD 4:
+    - air
+    - LAPIS_LAZULI
+    - air
+    - LAPIS_LAZULI
+    - QUARTZ
+    - LAPIS_LAZULI
+    - air
+    - LAPIS_LAZULI
+    - air
+  DARK_PRISMARINE 8:
+    - PRISMARINE
+    - PRISMARINE
+    - PRISMARINE
+    - PRISMARINE
+    - BLACK_DYE
+    - PRISMARINE
+    - PRISMARINE
+    - PRISMARINE
+    - PRISMARINE
+
 lumber_axe_items:
   - IRON_AXE
   - COPPER_AXE
@@ -259,3 +285,8 @@ villager_enchantments_locking:
 
   BOW:
     - POWER
+
+vehicle_break_blocks:
+  - ICE
+  - PACKED_ICE
+  - BLUE_ICE
