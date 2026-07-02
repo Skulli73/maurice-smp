@@ -23,7 +23,7 @@ public class Guide extends AbstractCustomItem {
 
     @Override
     public void onPlayerInteractEvent(PlayerInteractEvent event) {
-        event.getPlayer().performCommand("/cf guide"); //this doesnt work yet
+        event.getPlayer().performCommand("cf guide open");
     }
 
     @Override

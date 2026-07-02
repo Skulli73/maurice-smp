@@ -1,12 +1,15 @@
 package io.github.skulli73.mauriceSMP.commands.cf;
 
 import io.github.skulli73.mauriceSMP.MauriceSMP;
+import io.github.skulli73.mauriceSMP.customItems.guis.GUIManager;
+import io.github.skulli73.mauriceSMP.customItems.item.Category;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class CommandCfGuide implements CfCommand {
@@ -23,9 +26,20 @@ public class CommandCfGuide implements CfCommand {
             player.getInventory().addItem(MauriceSMP.getInstance().getItemManager().getCustomItems().get("CF_GUIDE").getItem());
             return true;
         }
+        GUIManager guiManager = MauriceSMP.getInstance().getGuiManager();
         if (strings[1].equals("open")) {
             if (length == 2) {
-                MauriceSMP.getInstance().getGuiManager().getMainMenu().show(player);
+                guiManager.getMainMenu().show(player);
+                return true;
+            }
+            if (length == 4) {
+                if (strings[2].equals("category")) {
+                    String value = strings[3];
+                    if (Arrays.stream(Category.values()).anyMatch(category -> category.name().equalsIgnoreCase(value))) {
+                        Category category = Category.valueOf(value.toUpperCase());
+                        guiManager.getCategoryGuis().get(category).show(player);
+                    }
+                }
             }
         }
         return false;
