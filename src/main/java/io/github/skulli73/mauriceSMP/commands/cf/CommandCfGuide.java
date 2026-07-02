@@ -1,7 +1,9 @@
 package io.github.skulli73.mauriceSMP.commands.cf;
 
+import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import io.github.skulli73.mauriceSMP.MauriceSMP;
 import io.github.skulli73.mauriceSMP.customItems.guis.GUIManager;
+import io.github.skulli73.mauriceSMP.customItems.item.AbstractCustomItem;
 import io.github.skulli73.mauriceSMP.customItems.item.Category;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -32,12 +34,28 @@ public class CommandCfGuide implements CfCommand {
                 guiManager.getMainMenu().show(player);
                 return true;
             }
-            if (length == 4) {
+            if (length >= 4) {
                 if (strings[2].equals("category")) {
                     String value = strings[3];
                     if (Arrays.stream(Category.values()).anyMatch(category -> category.name().equalsIgnoreCase(value))) {
                         Category category = Category.valueOf(value.toUpperCase());
                         guiManager.getCategoryGuis().get(category).show(player);
+                        return true;
+                    }
+                } else if (strings[2].equals("item")) {
+                    int page = 0;
+                    if (length >= 5) {
+                        if (isNumeric(strings[4])) {
+                            page = (int) Double.parseDouble(strings[4]);
+                        }
+                        AbstractCustomItem customItem = MauriceSMP.getInstance().getItemManager().stringToCustomItem(strings[3]);
+                        if (customItem != null) {
+                            List<ChestGui> itemGuis = guiManager.getItemGuis().get(customItem);
+                            if (itemGuis.size() <= page)
+                                page = 0;
+                            itemGuis.get(page).show(player);
+                            return true;
+                        }
                     }
                 }
             }
@@ -48,5 +66,10 @@ public class CommandCfGuide implements CfCommand {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         return List.of();
+    }
+
+
+    private boolean isNumeric(String str) {
+        return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
     }
 }
