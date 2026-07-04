@@ -32,6 +32,8 @@ public class SkillsManager {
     private final NamespacedKey veinMiningEnchantmentKey;
     private List<String> veinMinerItems;
     private List<String> lumberaxeItems;
+    @Getter
+    private final Map<String, SkillWithNumber> blockMiningXp = new HashMap<>();
 
     public SkillsManager() {
         this.config = MauriceSMP.getInstance().getConfig();
@@ -39,6 +41,7 @@ public class SkillsManager {
         bonusEnchantedKey = new NamespacedKey(MauriceSMP.getInstance(), "bonus-enchanted");
         loggingEnchantmentKey = new NamespacedKey(MauriceSMP.getInstance(), "logging-enchantment");
         veinMiningEnchantmentKey = new NamespacedKey(MauriceSMP.getInstance(), "veinmining-enchantment");
+
 
     }
     private void importConfigs() {
@@ -83,20 +86,31 @@ public class SkillsManager {
                 bonusEnchantmentMap.put(key, enchantmentWithSkills);
             }
         }
+
+        for (SkillType skillType : SkillType.values()) {
+            ConfigurationSection blockMiningXpSection = config.getConfigurationSection("block_mining_xp." + skillType.getId());
+            if (blockMiningXpSection == null)
+                continue;
+            for (String key: blockMiningXpSection.getKeys(false)) {
+                double xp = blockMiningXpSection.getDouble(key);
+                blockMiningXp.put(key, new SkillWithNumber(skillType, xp));
+            }
+        }
     }
 
     public void addXPForCrafting (Player player, String itemName) {
         if (!itemXpMap.containsKey(itemName))
             return;
         for (SkillWithNumber skillWithXP : itemXpMap.get(itemName)) {
-            SkillsManager.addXP(player, skillWithXP.getSkillType(), skillWithXP.getXp());
+            SkillsManager.addXP(player, skillWithXP.getSkillType(), skillWithXP.getNumber());
         }
     }
     public void addXPForCrafting (Player player, String itemName, double multiplier) {
         if (!itemXpMap.containsKey(itemName))
             return;
+        multiplier = (double) ((int) (multiplier*1000))/1000;
         for (SkillWithNumber skillWithXP : itemXpMap.get(itemName)) {
-            SkillsManager.addXP(player, skillWithXP.getSkillType(), skillWithXP.getXp()*multiplier);
+            SkillsManager.addXP(player, skillWithXP.getSkillType(), skillWithXP.getNumber()*multiplier);
         }
     }
 

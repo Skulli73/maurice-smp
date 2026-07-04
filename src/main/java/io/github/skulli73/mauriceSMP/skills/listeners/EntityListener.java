@@ -1,9 +1,12 @@
 package io.github.skulli73.mauriceSMP.skills.listeners;
 
 import io.github.skulli73.mauriceSMP.MauriceSMP;
+import io.github.skulli73.mauriceSMP.customItems.ItemManager;
+import io.github.skulli73.mauriceSMP.skills.Skill;
 import io.github.skulli73.mauriceSMP.skills.SkillType;
 import io.github.skulli73.mauriceSMP.skills.SkillsManager;
 import org.bukkit.Location;
+import org.bukkit.damage.DamageSource;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -11,10 +14,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.projectiles.ProjectileSource;
 
 public class EntityListener implements Listener {
@@ -29,6 +34,19 @@ public class EntityListener implements Listener {
             if (xp > 1)
                 xp = 1;
             SkillsManager.addXP(player, SkillType.BOW, xp);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onDamageEntity (EntityDamageByEntityEvent event) {
+        Entity damager = event.getDamager();
+        Entity damaged = event.getEntity();
+        SkillsManager skillsManager = MauriceSMP.getInstance().getSkillsManager();
+        if (damager instanceof Player player && damaged instanceof Damageable) {
+            ItemStack item = player.getInventory().getItemInMainHand();
+            if (skillsManager.getItemXpMap().containsKey(item.getType().name())) {
+                SkillsManager.addXP(player, SkillType.BLADESMITHING, 0.0003*event.getDamage());
+            }
         }
     }
 

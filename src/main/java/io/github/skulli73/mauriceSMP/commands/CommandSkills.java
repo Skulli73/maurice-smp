@@ -19,7 +19,6 @@ public class CommandSkills implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        System.out.println(args);
         if (args.length > 1) {
             return false;
         }

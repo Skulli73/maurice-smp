@@ -1,6 +1,5 @@
 package io.github.skulli73.mauriceSMP.skills.listeners;
 
-import com.google.common.util.concurrent.Service;
 import io.github.skulli73.mauriceSMP.MauriceSMP;
 import io.github.skulli73.mauriceSMP.skills.SkillWithNumber;
 import io.github.skulli73.mauriceSMP.skills.SkillsManager;
@@ -10,16 +9,11 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.VillagerAcquireTradeEvent;
-import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.inventory.TradeSelectEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantInventory;
-import org.bukkit.inventory.MerchantRecipe;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
 import java.util.Map;
@@ -45,9 +39,9 @@ public class VillagerListener implements Listener {
                             if (skillWithNumber != null) {
                                 HumanEntity humanEntity = event.getViewers().getFirst();
                                 if (humanEntity instanceof Player player) {
-                                    if (SkillsManager.getLevel(player, skillWithNumber.getSkillType()) < skillWithNumber.getXp()) {
+                                    if (SkillsManager.getLevel(player, skillWithNumber.getSkillType()) < skillWithNumber.getNumber()) {
                                         event.setCancelled(true);
-                                        event.getWhoClicked().sendMessage("§4You need §b§lLevel " + (int) skillWithNumber.getXp() + " " + skillWithNumber.getSkillType().getName() + " for this trade!");
+                                        event.getWhoClicked().sendMessage("§4You need §b§lLevel " + (int) skillWithNumber.getNumber() + " " + skillWithNumber.getSkillType().getName() + " for this trade!");
                                     }
                                 }
                             }

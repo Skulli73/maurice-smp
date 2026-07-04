@@ -20,9 +20,8 @@ public class CommandAddSkillXp implements CommandExecutor, TabExecutor {
 
     // This method is called, when somebody uses our command
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         SkillsManager skillsManager = MauriceSMP.getInstance().getSkillsManager();
-        System.out.println(Arrays.toString(args));
         if (args.length < 2 || args.length > 3) {
             return false;
         }
