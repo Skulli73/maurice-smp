@@ -6,9 +6,9 @@ public class SkillWithNumber {
     @Getter
     private final SkillType skillType;
     @Getter
-    private final double xp;
+    private final double number;
     public SkillWithNumber(SkillType skillType, double xp) {
         this.skillType = skillType;
-        this.xp = xp;
+        this.number = xp;
     }
 }

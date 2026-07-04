@@ -127,19 +127,19 @@ gainable_xp:
     IRON_HELMET: 1.875
     IRON_BOOTS: 1.5
     IRON_CHESTPLATE: 3
-    IRON_LEGGINGS: 2.6.25
+    IRON_LEGGINGS: 2.625
   BLADESMITHING:
-    IRON_SWORD: 0.75
-    IRON_AXE: 0.3
-    IRON_SPEAR: 0.375
+    IRON_SWORD: 0.5
+    IRON_AXE: 0.2
+    IRON_SPEAR: 0.25
   PICKAXE:
-    IRON_PICKAXE: 1.125
-    IRON_SHOVEL: 0.375
-    DIAMOND_PICKAXE: 3
+    IRON_PICKAXE: 0.75
+    IRON_SHOVEL: 0.25
+    DIAMOND_PICKAXE: 2
   AXE:
-    IRON_AXE: 1.125
+    IRON_AXE: 0.75
   HOE:
-    IRON_HOE: 1.125
+    IRON_HOE: 0.75
 
 disabled_recipes:
   - ENCHANTING_TABLE
@@ -167,9 +167,10 @@ custom_unshaped_recipes:
     - andesite
   brick 4:
     - bricks
-    NETHERRACK:
-      - REDSTONE
-      - COBBLESTONE
+  gravel:
+    - cobblestone
+  sand:
+    - gravel
 
 custom_shaped_recipes:
   glowstone_dust 8:
@@ -290,3 +291,38 @@ vehicle_break_blocks:
   - ICE
   - PACKED_ICE
   - BLUE_ICE
+
+block_mining_xp:
+  BLADESMITHING:
+
+  ARMOUR:
+
+  AXE:
+    OAK_LOG: 0.001
+    BIRCH_LOG: 0.001
+    ACACIA_LOG: 0.001
+    JUNGLE_LOG: 0.001
+    MANGROVE_LOG: 0.001
+    DARK_OAK_LOG: 0.001
+    CHERRY_LOG: 0.001
+    PALE_OAK_LOG: 0.001
+  PICKAXE:
+    DIAMOND_ORE: 0.1
+    IRON_ORE: 0.01
+    GOLD_ORE: 0.02
+    COPPER_ORE: 0.002
+    COAL_ORE: 0.002
+    REDSTONE_ORE: 0.003
+    DEEPSLATE_DIAMOND_ORE: 0.1
+    DEEPSLATE_IRON_ORE: 0.01
+    DEEPSLATE_GOLD_ORE: 0.02
+    DEEPSLATE_COPPER_ORE: 0.002
+    DEEPSLATE_COAL_ORE: 0.002
+    DEEPSLATE_REDSTONE_ORE: 0.003
+  HOE:
+    WHEAT: 0.001
+    CARROTS: 0.001
+    POTATOES: 0.001
+    BEETROOTS: 0.001
+  BOW:
+
