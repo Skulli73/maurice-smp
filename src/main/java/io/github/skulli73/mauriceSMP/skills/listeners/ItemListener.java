@@ -9,6 +9,6 @@ import org.bukkit.event.player.PlayerItemDamageEvent;
 public class ItemListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onCraftItem(PlayerItemDamageEvent event) {
-        event.setDamage(event.getDamage()*4);
+      //  event.setDamage(event.getDamage()*4);
     }
 }
