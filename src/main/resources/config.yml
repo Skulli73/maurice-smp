@@ -171,6 +171,10 @@ custom_unshaped_recipes:
     - cobblestone
   sand:
     - gravel
+  soul_sand:
+    - sand
+    - rotten_flesh
+    - bone
 
 custom_shaped_recipes:
   glowstone_dust 8:
