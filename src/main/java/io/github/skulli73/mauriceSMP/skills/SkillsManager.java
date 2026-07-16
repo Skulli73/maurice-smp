@@ -251,7 +251,7 @@ public class SkillsManager {
                     List<String> lore = meta.getLore();
                     if (lore == null)
                         lore = new ArrayList<>();
-                    lore.add("§7Logging§!");
+                    lore.add("§7Logging§r");
                     meta.setLore(lore);
                     meta.getPersistentDataContainer().set(loggingEnchantmentKey, PersistentDataType.BOOLEAN, true);
                 }
@@ -263,7 +263,7 @@ public class SkillsManager {
                     List<String> lore = meta.getLore();
                     if (lore == null)
                         lore = new ArrayList<>();
-                    lore.add("§7Vein Miner§!");
+                    lore.add("§7Vein Miner§r");
                     meta.setLore(lore);
                     meta.getPersistentDataContainer().set(veinMiningEnchantmentKey, PersistentDataType.BOOLEAN, true);
                 }

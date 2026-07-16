@@ -17,6 +17,8 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 
+import java.util.List;
+
 public class OnCraftListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onCraftItem(CraftItemEvent event) { //crafting table
@@ -39,7 +41,7 @@ public class OnCraftListener implements Listener {
             if (customItem != null) {
                 for (SkillWithNumber skill : customItem.getRequiredSkills()) {
                     if (SkillsManager.getLevel(player, skill.getSkillType()) < skill.getNumber()) {
-                        event.getWhoClicked().sendMessage("§4You need to be§c Level " + skill.getNumber() + " " + skill.getSkillType().getName() + "§!§4.§!");
+                        event.getWhoClicked().sendMessage("§4You need to be§c Level " + skill.getNumber() + " " + skill.getSkillType().getName() + "§r§4.§r");
                         event.setCancelled(true);
                         player.playSound(player, Sound.ENTITY_VILLAGER_HURT, 1, 1);
                         return;
@@ -48,7 +50,16 @@ public class OnCraftListener implements Listener {
             }
         }
         else if (recipeManager.isDisabled(recipe.getResult())) {
-            event.getWhoClicked().sendMessage("§4This item is disabled.§!");
+            event.getWhoClicked().sendMessage("§4This item is disabled.§r");
+            event.setCancelled(true);
+            player.playSound(player, Sound.ENTITY_VILLAGER_HURT, 1, 1);
+            return;
+        } else if (!recipeManager.canCraft(player, recipe.getResult().getType().name())) {
+            StringBuilder builder = new StringBuilder("§4You do not have the skills to craft this item§r\nYou require:\n");
+            for (SkillWithNumber skill : recipeManager.getRequiredLevels().get(recipe.getResult().getType().name())) {
+                builder.append("§a").append(skill.getSkillType().getName()).append("§r: ").append((int)skill.getNumber()).append("\n");
+            }
+            event.getWhoClicked().sendMessage(builder.toString());
             event.setCancelled(true);
             player.playSound(player, Sound.ENTITY_VILLAGER_HURT, 1, 1);
             return;

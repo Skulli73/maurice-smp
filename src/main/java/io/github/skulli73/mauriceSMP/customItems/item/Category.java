@@ -15,7 +15,7 @@ public enum Category {
     Category (ItemStack displayItem, String name, char colourCode) {
         ItemMeta meta = displayItem.getItemMeta();
         if (meta != null) {
-            meta.setDisplayName("§" + colourCode + name + "§!");
+            meta.setDisplayName("§" + colourCode + name + "§r");
             displayItem.setItemMeta(meta);
         }
         this.displayItem = displayItem;

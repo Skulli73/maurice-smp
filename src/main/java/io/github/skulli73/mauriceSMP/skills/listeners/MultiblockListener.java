@@ -41,7 +41,7 @@ public class MultiblockListener implements Listener {
                     }
                 }
                 if (toEnchant == null) {
-                    player.sendMessage("§4Please put an item with possible bonus enchantments into the machine.§!");
+                    player.sendMessage("§4Please put an item with possible bonus enchantments into the machine.§r");
                     event.setCancelled(true);
                     player.playSound(player, Sound.ENTITY_VILLAGER_HURT, 1, 1);
                     return;
@@ -81,7 +81,7 @@ public class MultiblockListener implements Listener {
                     skillsManager.enchantItemBonus(toEnchant, Math.log10(amountDiamonds)*5, player);
                     player.playSound(player, Sound.BLOCK_CRAFTER_CRAFT, 1, 1);
                 } else {
-                    player.sendMessage("§4Please put diamonds into the machine.§!");
+                    player.sendMessage("§4Please put diamonds into the machine.§r");
                     event.setCancelled(true);
                     player.playSound(player, Sound.ENTITY_VILLAGER_HURT, 1, 1);
                     return;

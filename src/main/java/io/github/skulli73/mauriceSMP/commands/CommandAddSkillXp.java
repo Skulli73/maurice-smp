@@ -32,7 +32,7 @@ public class CommandAddSkillXp implements CommandExecutor, TabExecutor {
         SkillType skillType;
         if (args.length == 2) {
             if (!(sender instanceof Player)) {
-                sender.sendMessage("§cThis command cannot be applied to the console.§!");
+                sender.sendMessage("§cThis command cannot be applied to the console.§r");
                 return false;
             }
             player = (Player) sender;
@@ -44,11 +44,11 @@ public class CommandAddSkillXp implements CommandExecutor, TabExecutor {
             skillType = skillsManager.getSkillTypeFromString(args[1]);
         }
         if (!isNumeric(valueString)) {
-            sender.sendMessage("§cInvalid xp amount.§!");
+            sender.sendMessage("§cInvalid xp amount.§r");
             return false;
         }
         if (player == null) {
-            sender.sendMessage("§cInvalid player.§!");
+            sender.sendMessage("§cInvalid player.§r");
             return false;
         }
         value = Double.parseDouble(valueString);

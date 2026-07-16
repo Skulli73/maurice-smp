@@ -16,7 +16,7 @@ public class Guide extends AbstractCustomItem {
         ItemStack itemStack = new ItemStack(Material.ENCHANTED_BOOK);
         ItemMeta meta = itemStack.getItemMeta();
         if (meta != null)
-            meta.setItemName("§bCiroFun Guide§!");
+            meta.setItemName("§bCiroFun Guide§r");
         itemStack.setItemMeta(meta);
         return itemStack;
     }

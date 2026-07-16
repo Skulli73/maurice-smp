@@ -26,14 +26,14 @@ public class CommandSkills implements CommandExecutor {
         Server server = sender.getServer();
         if (args.length == 0) {
             if (!(sender instanceof Player)) {
-                sender.sendMessage("§cThis command cannot be applied to the console.§!");
+                sender.sendMessage("§cThis command cannot be applied to the console.§r");
                 return false;
             }
             player = (Player) sender;
         } else {
             player = server.getPlayer(args[0]);
             if (player == null) {
-                sender.sendMessage("§cInvalid player.§!");
+                sender.sendMessage("§cInvalid player.§r");
                 return false;
             }
         }

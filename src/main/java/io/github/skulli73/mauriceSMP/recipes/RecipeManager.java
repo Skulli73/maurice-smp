@@ -3,12 +3,17 @@ package io.github.skulli73.mauriceSMP.recipes;
 import io.github.skulli73.mauriceSMP.MauriceSMP;
 import io.github.skulli73.mauriceSMP.customItems.ItemManager;
 import io.github.skulli73.mauriceSMP.customItems.item.AbstractCustomItem;
+import io.github.skulli73.mauriceSMP.skills.SkillType;
+import io.github.skulli73.mauriceSMP.skills.SkillWithNumber;
+import io.github.skulli73.mauriceSMP.skills.SkillsManager;
+import io.github.skulli73.mauriceSMP.skills.player.FunPlayer;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,6 +25,8 @@ public class RecipeManager {
     private Map<String, Integer> amountOfRecipes = new HashMap<>();
     @Getter
     private Set<Recipe> recipes = new HashSet<>();
+    @Getter
+    private Map<String, List<SkillWithNumber>> requiredLevels = new HashMap<>();
     public RecipeManager () {
         this.config = MauriceSMP.getInstance().getConfig();
         disabledRecipes = config.getStringList("disabled_recipes");
@@ -82,6 +89,30 @@ public class RecipeManager {
                 Bukkit.addRecipe(recipe);
                 recipes.add(recipe);
             }
+
+        ConfigurationSection requiredLevelsSection = config.getConfigurationSection("required_skills_recipes");
+        if (requiredLevelsSection != null)
+            for (String key : requiredLevelsSection.getKeys(false)) {
+                ConfigurationSection itemSection = config.getConfigurationSection("required_skills_recipes." + key);
+                if (itemSection != null) {
+                    requiredLevels.put(key, new ArrayList<>());
+                    for (SkillType skillType : SkillType.values()) {
+                        if (itemSection.contains(skillType.getId()) && itemSection.isInt(skillType.getId())) {
+                            requiredLevels.get(key).add(new SkillWithNumber(skillType, itemSection.getInt(skillType.getId())));
+                        }
+                    }
+                }
+            }
+    }
+    public boolean canCraft (Player player, String item) {
+        if (!requiredLevels.containsKey(item))
+            return true;
+        SkillsManager skillsManager = MauriceSMP.getInstance().getSkillsManager();
+        for (SkillWithNumber skill : requiredLevels.get(item)) {
+            if (SkillsManager.getLevel(player, skill.getSkillType()) < skill.getNumber())
+                return false;
+        }
+        return true;
     }
 
     private @Nullable CraftingRecipe initializeRecipe(String key, boolean shapeless) {

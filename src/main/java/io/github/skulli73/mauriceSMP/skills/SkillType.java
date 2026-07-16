@@ -10,7 +10,7 @@ public enum SkillType {
     AXE("AXE", "Forestry"),
     HOE("HOE", "Farming"),
     BOW("BOW", "Fletchery"),
-    SHOVEL("SHOVEL", "SHOVELING");
+    SHOVEL("SHOVEL", "Digging");
     @Getter
     private final String id;
     @Getter

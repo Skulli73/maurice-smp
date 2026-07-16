@@ -19,7 +19,7 @@ public class CommandCfGive implements CfCommand {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (!commandSender.hasPermission("maurice-smp.cf-admin") && !commandSender.isOp()) {
-            commandSender.sendMessage("§4You do not have the necessary permissions.§!");
+            commandSender.sendMessage("§4You do not have the necessary permissions.§r");
             return false;
         }
         int length = strings.length;
@@ -28,7 +28,7 @@ public class CommandCfGive implements CfCommand {
         ItemManager itemManager = MauriceSMP.getInstance().getItemManager();
         String itemId = strings[1].toUpperCase();
         if (!itemManager.getCustomItems().containsKey(itemId)) {
-            commandSender.sendMessage("§4This item does not exist.§!");
+            commandSender.sendMessage("§4This item does not exist.§r");
             return false;
         }
         AbstractCustomItem item = itemManager.getCustomItems().get(itemId);
@@ -37,12 +37,12 @@ public class CommandCfGive implements CfCommand {
         if (length >= 3) {
             player = commandSender.getServer().getPlayer(strings[2]);
             if (player == null) {
-                commandSender.sendMessage("§4This player does not exist.§!");
+                commandSender.sendMessage("§4This player does not exist.§r");
                 return false;
             }
             if (length == 4) {
                 if (!isNumeric(strings[3])) {
-                    commandSender.sendMessage("§4Please enter a valid number.§!");
+                    commandSender.sendMessage("§4Please enter a valid number.§r");
                     return false;
                 }
                 else
@@ -50,7 +50,7 @@ public class CommandCfGive implements CfCommand {
             }
         } else {
             if (!(commandSender instanceof Player)) {
-                commandSender.sendMessage("§cThis command cannot be applied to the console.§!");
+                commandSender.sendMessage("§cThis command cannot be applied to the console.§r");
                 return false;
             }
             player = ((Player) commandSender);

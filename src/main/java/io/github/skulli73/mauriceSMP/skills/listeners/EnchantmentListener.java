@@ -16,7 +16,7 @@ public class EnchantmentListener implements Listener {
         Inventory inventory = event.getInventory();
         if (event.getEnchantBlock().getType() == Material.ENCHANTING_TABLE) {
             event.setCancelled(true);
-            event.getEnchanter().sendMessage("§4Enchanting is disabled.§!");
+            event.getEnchanter().sendMessage("§4Enchanting is disabled.§r");
             event.getEnchanter().playSound(event.getEnchanter(), Sound.ENTITY_VILLAGER_HURT, 1, 1);
         }
 

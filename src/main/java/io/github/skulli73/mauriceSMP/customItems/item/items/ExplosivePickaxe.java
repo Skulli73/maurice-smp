@@ -24,7 +24,7 @@ public class ExplosivePickaxe extends AbstractCustomItem {
         ItemStack itemStack = new ItemStack(Material.DIAMOND_PICKAXE);
         ItemMeta meta = itemStack.getItemMeta();
         if (meta != null)
-            meta.setItemName("§a§bExplosive Pickaxe§!");
+            meta.setItemName("§a§bExplosive Pickaxe§r");
         itemStack.setItemMeta(meta);
         return itemStack;
     }
