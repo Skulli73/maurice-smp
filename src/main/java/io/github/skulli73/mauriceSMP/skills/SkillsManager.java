@@ -15,6 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -146,7 +147,7 @@ public class SkillsManager {
         int newLevel = data.getCurrentLevel();
 
 
-        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§6You have gained " + xp + " XP in " + skill.getName() + "!"));
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§6You have gained " + (Math.ceil(xp*10000))/10000 + " XP in " + skill.getName() + "!"));
         if (newLevel > currentLevel) {
             p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§b" + (skill.getName()) + " has been increased to Level " + newLevel + "!"));
             p.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
@@ -229,7 +230,7 @@ public class SkillsManager {
                     continue;
                 double skillLevel = SkillsManager.getLevel(player, enchantmentWithSkill.skillType) + bonusSkill;
                 int skillLevelRandom = (int) Math.floor(skillLevel + Math.random() * 10 - 5);
-                int enchantmentLevel = Math.round(skillLevelRandom * ((float) enchantment.getMaxLevel() / 13));
+                int enchantmentLevel = Math.round(skillLevelRandom * ((float) enchantment.getMaxLevel() / 10));
                 if (enchantmentLevel > 0) {
                     if (item.containsEnchantment(enchantment)) {
                         int currentLevel = item.getEnchantmentLevel(enchantment);

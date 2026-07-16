@@ -27,7 +27,7 @@ public class CommandAddSkillXp implements CommandExecutor, TabExecutor {
         }
         Player player;
         String valueString;
-        int value;
+        double value;
         Server server = sender.getServer();
         SkillType skillType;
         if (args.length == 2) {
@@ -51,7 +51,7 @@ public class CommandAddSkillXp implements CommandExecutor, TabExecutor {
             sender.sendMessage("§cInvalid player.§!");
             return false;
         }
-        value = Integer.parseInt(valueString);
+        value = Double.parseDouble(valueString);
 
         if(skillType == null) {
             sender.sendMessage("§cInvalid Skill Type.");

@@ -9,11 +9,12 @@ public enum SkillType {
     PICKAXE("PICKAXE", "Mining"),
     AXE("AXE", "Forestry"),
     HOE("HOE", "Farming"),
-    BOW("BOW", "Fletchery");
+    BOW("BOW", "Fletchery"),
+    SHOVEL("SHOVEL", "SHOVELING");
     @Getter
-    private String id;
+    private final String id;
     @Getter
-    private String name;
+    private final String name;
     SkillType (String id, String name) {
         this.id = id;
         this.name = name;

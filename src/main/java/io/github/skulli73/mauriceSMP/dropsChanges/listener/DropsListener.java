@@ -29,7 +29,7 @@ public class DropsListener implements Listener {
         hoes.add(Material.COPPER_HOE);
     }
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onBlockBreak(BlockDropItemEvent event) {
+    public void onBlockDropItem(BlockDropItemEvent event) {
         BlockState broken = event.getBlockState();
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
@@ -53,6 +53,12 @@ public class DropsListener implements Listener {
                     }
                     wheatItemStack.setAmount(newDrops);
                 }
+            }
+        }
+        if (broken.getBlockData().getMaterial() == Material.ANCIENT_DEBRIS && !item.containsEnchantment(Enchantment.SILK_TOUCH)) {
+            for (Item item1 : event.getItems()) {
+                if (item1.getItemStack().getType() == Material.ANCIENT_DEBRIS)
+                    item1.setItemStack(new ItemStack(Material.NETHERITE_SCRAP));
             }
         }
     }

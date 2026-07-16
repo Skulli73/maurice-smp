@@ -45,7 +45,7 @@ public class EntityListener implements Listener {
         if (damager instanceof Player player && damaged instanceof Damageable) {
             ItemStack item = player.getInventory().getItemInMainHand();
             if (skillsManager.getItemXpMap().containsKey(item.getType().name())) {
-                SkillsManager.addXP(player, SkillType.BLADESMITHING, 0.0003*event.getDamage());
+                SkillsManager.addXP(player, SkillType.BLADESMITHING, 0.0003*((int)event.getDamage()));
             }
         }
     }
