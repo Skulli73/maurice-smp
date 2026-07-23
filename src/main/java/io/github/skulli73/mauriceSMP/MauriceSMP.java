@@ -2,6 +2,7 @@ package io.github.skulli73.mauriceSMP;
 
 import io.github.skulli73.mauriceSMP.customItems.ItemManager;
 import io.github.skulli73.mauriceSMP.customItems.guis.GUIManager;
+import io.github.skulli73.mauriceSMP.customItems.listener.BlockPlaceListener;
 import io.github.skulli73.mauriceSMP.customItems.listener.ClickListener;
 import io.github.skulli73.mauriceSMP.customItems.listener.OnBlockBreakListener;
 import io.github.skulli73.mauriceSMP.dropsChanges.listener.DropsListener;
@@ -61,6 +62,7 @@ public final class MauriceSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new VehicleListener(), this);
         getServer().getPluginManager().registerEvents(new ClickListener(), this);
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
+        getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
         playerDataManager =  new PlayerDataManager();
         commandManager = new CommandManager();
         skillsManager = new SkillsManager();

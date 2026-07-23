@@ -7,7 +7,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public enum Category {
     TOOLS(new ItemStack(Material.IRON_PICKAXE), "Tools", 'a'),
-    MISCELLANEOUS(new ItemStack(Material.NETHER_STAR), "Miscellaneous", 'b');
+    MISCELLANEOUS(new ItemStack(Material.NETHER_STAR), "Miscellaneous", 'b'),
+    MACHINES(new ItemStack(Material.DISPENSER), "Machines", 'c');
     @Getter
     private final ItemStack displayItem;
     @Getter

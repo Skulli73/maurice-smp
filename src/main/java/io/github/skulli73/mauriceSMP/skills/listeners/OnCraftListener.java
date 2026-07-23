@@ -12,6 +12,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.block.CrafterCraftEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -90,6 +93,7 @@ public class OnCraftListener implements Listener {
         }
         event.setCurrentItem(itemStack);
     }
+
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onCraftCrafter (CrafterCraftEvent event) {

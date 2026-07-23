@@ -3,6 +3,7 @@ package io.github.skulli73.mauriceSMP.customItems;
 import io.github.skulli73.mauriceSMP.MauriceSMP;
 import io.github.skulli73.mauriceSMP.customItems.item.AbstractCustomItem;
 import io.github.skulli73.mauriceSMP.customItems.item.Category;
+import io.github.skulli73.mauriceSMP.customItems.item.items.Driller;
 import io.github.skulli73.mauriceSMP.customItems.item.items.ExplosivePickaxe;
 import io.github.skulli73.mauriceSMP.customItems.item.items.Guide;
 import lombok.Getter;
@@ -21,7 +22,7 @@ public class ItemManager {
     @Getter
     private NamespacedKey idKey;
     @Getter
-    private Map<Category, Set<AbstractCustomItem>> categoryItemMap = new HashMap<>();
+    private final Map<Category, Set<AbstractCustomItem>> categoryItemMap = new HashMap<>();
     public ItemManager () {
         instance = MauriceSMP.getInstance();
         idKey = new NamespacedKey(instance, "custom_item_id");
@@ -30,6 +31,7 @@ public class ItemManager {
     public void registerItems () {
         new ExplosivePickaxe().register(this);
         new Guide().register(this);
+        new Driller().register(this);
     }
     public AbstractCustomItem stringToCustomItem (String string) {
         return getCustomItems().getOrDefault(string.toUpperCase(), null);

@@ -4,6 +4,7 @@ import io.github.skulli73.mauriceSMP.customItems.ItemManager;
 import io.github.skulli73.mauriceSMP.skills.SkillWithNumber;
 import lombok.Getter;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -30,6 +31,9 @@ public abstract class AbstractCustomItem {
     public void onPlayerInteractEvent(PlayerInteractEvent event) {
 
     }
+    public void onBlockPlaceEvent (BlockPlaceEvent event) {
+
+    }
     public void register(ItemManager itemManager) {
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
@@ -52,7 +56,9 @@ public abstract class AbstractCustomItem {
         Map<Category, Set<AbstractCustomItem>> categoryItemMap = itemManager.getCategoryItemMap();
         Set<AbstractCustomItem> customItems = categoryItemMap.get(category);
         if (customItems == null) {
-            categoryItemMap.put(category, Set.of(this));
+            Set<AbstractCustomItem> newSet = new HashSet<>();
+            newSet.add(this);
+            categoryItemMap.put(category, newSet);
         } else {
             customItems.add(this);
         }
