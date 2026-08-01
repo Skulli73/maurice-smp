@@ -9,7 +9,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class Driller extends AbstractCustomItem {
+public class Driller extends AbstractBlock {
     public Driller () {
         super(getItemStack(), "DRILLER", Category.MACHINES);
     }
@@ -27,8 +27,5 @@ public class Driller extends AbstractCustomItem {
         return "Driller";
     }
 
-    @Override
-    public void onBlockPlaceEvent(BlockPlaceEvent event) {
-        event.setCancelled(true);
-    }
+
 }

@@ -2,6 +2,7 @@ package io.github.skulli73.mauriceSMP;
 
 import io.github.skulli73.mauriceSMP.customItems.ItemManager;
 import io.github.skulli73.mauriceSMP.customItems.guis.GUIManager;
+import io.github.skulli73.mauriceSMP.customItems.item.blocks.BlockDataManager;
 import io.github.skulli73.mauriceSMP.customItems.listener.BlockPlaceListener;
 import io.github.skulli73.mauriceSMP.customItems.listener.ClickListener;
 import io.github.skulli73.mauriceSMP.customItems.listener.OnBlockBreakListener;
@@ -40,6 +41,8 @@ public final class MauriceSMP extends JavaPlugin {
     @Getter
     private GUIManager guiManager;
     @Getter
+    private BlockDataManager blockDataManager;
+    @Getter
     private final String DATA_PATH = getDataFolder().getAbsolutePath() + File.separator + "player" + File.separator + "%s.json";
     public MauriceSMP () {
         super();
@@ -71,6 +74,7 @@ public final class MauriceSMP extends JavaPlugin {
         entityManager = new EntityManager();
         villagerManager = new VillagerManager();
         guiManager = new GUIManager();
+        blockDataManager = new BlockDataManager();
     }
 
     @Override

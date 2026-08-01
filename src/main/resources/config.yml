@@ -307,6 +307,16 @@ custom_shaped_recipes:
     - air
     - STICK
     - air
+  DRILLER:
+    - COBBLESTONE
+    - COBBLESTONE
+    - COBBLESTONE
+    - COBBLESTONE
+    - DIAMOND_PICKAXE
+    - COBBLESTONE
+    - COBBLESTONE
+    - REDSTONE
+    - COBBLESTONE
   PRISMARINE_SHARD 4:
     - air
     - LAPIS_LAZULI
@@ -345,6 +355,7 @@ lumber_axe_blocks:
   - DARK_OAK_LOG
   - CHERRY_LOG
   - PALE_OAK_LOG
+  - SPRUCE_LOG
 vein_miner_blocks:
   - DIAMOND_ORE
   - IRON_ORE
@@ -381,6 +392,7 @@ vehicle_break_blocks:
 block_mining_xp:
   AXE:
     OAK_LOG: 0.01
+    SPRUCE_LOG: 0.01
     BIRCH_LOG: 0.01
     ACACIA_LOG: 0.01
     JUNGLE_LOG: 0.01
