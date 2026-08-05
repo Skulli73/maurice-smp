@@ -19,6 +19,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class OnBlockBreakListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
@@ -37,8 +38,10 @@ public class OnBlockBreakListener implements Listener {
         Block block = event.getBlock();
         Location location = new Location(block.getX(), block.getY(), block.getZ(), block.getWorld());
         BlockDataManager blockDataManager = MauriceSMP.getInstance().getBlockDataManager();
-        if (blockDataManager.getPlacedBlocks().containsKey(location)) {
-            event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), blockDataManager.getPlacedBlocks().get(location).getItem().getItem());
+        PlacedBlock placedBlock = blockDataManager.getPlacedBlocks().get(location);
+        if (placedBlock != null) {
+            event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), placedBlock.getItem().getItem());
         }
+        event.setDropItems(false);
     }
 }

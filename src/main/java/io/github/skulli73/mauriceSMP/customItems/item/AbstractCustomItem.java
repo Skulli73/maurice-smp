@@ -1,6 +1,7 @@
 package io.github.skulli73.mauriceSMP.customItems.item;
 
 import io.github.skulli73.mauriceSMP.customItems.ItemManager;
+import io.github.skulli73.mauriceSMP.customItems.item.blocks.BlockDataManager;
 import io.github.skulli73.mauriceSMP.skills.SkillWithNumber;
 import lombok.Getter;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -64,4 +65,8 @@ public abstract class AbstractCustomItem {
         }
     }
     public abstract String getName ();
+
+    public String writeJson () {
+        return BlockDataManager.GSON.toJson(id);
+    }
  }

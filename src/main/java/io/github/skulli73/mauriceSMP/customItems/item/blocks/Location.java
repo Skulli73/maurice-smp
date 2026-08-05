@@ -4,6 +4,8 @@ import io.github.skulli73.mauriceSMP.MauriceSMP;
 import org.bukkit.World;
 import org.jspecify.annotations.Nullable;
 
+import java.util.Objects;
+
 public class Location {
     private int x;
     private int y;
@@ -14,6 +16,14 @@ public class Location {
         this.y = y;
         this.z = z;
         this.world = world;
+    }
+
+    @Override
+    public boolean equals (Object obj) {
+        if (obj instanceof Location location) {
+            return Objects.equals(location.toString(), this.toString());
+        }
+        return false;
     }
     public String toString() {
 
@@ -43,7 +53,16 @@ public class Location {
         return new Location(x, y, z, world);
     }
 
+    public String writeJson () {
+        return BlockDataManager.GSON.toJson(toString());
+    }
+
     private boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z, world);
     }
 }

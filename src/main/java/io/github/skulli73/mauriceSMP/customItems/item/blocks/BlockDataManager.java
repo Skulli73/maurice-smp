@@ -9,13 +9,15 @@ import io.github.skulli73.mauriceSMP.skills.player.FunPlayer;
 import lombok.Getter;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class BlockDataManager {
 
 
-    private final Gson gson = new GsonBuilder()
+    public static final Gson GSON = new GsonBuilder()
             .serializeNulls()
             .setPrettyPrinting()
             .create();
@@ -27,14 +29,14 @@ public class BlockDataManager {
     }
 
     private PlacedBlock loadBlockData(Location location) {
-        File file = new File(MauriceSMP.getInstance().getDATA_PATH().formatted(location.toString()));
+        File file = new File(MauriceSMP.getInstance().getDATA_PATH_BLOCKS().formatted(location.toString()));
         if (!file.exists()) {
             return null;
         }
 
         JsonData data = new JsonData(file);
         data.load();
-        PlacedBlock placedBlock = gson.fromJson(data.getJsonObject(), PlacedBlock.class);
+        PlacedBlock placedBlock = GSON.fromJson(data.getJsonObject(), PlacedBlock.class);
         placedBlocks.put(placedBlock.getLocation(), placedBlock);
         return placedBlock;
     }
@@ -47,11 +49,13 @@ public class BlockDataManager {
     void saveBlockData(PlacedBlock placedBlock) {
         File file = new File(MauriceSMP.getInstance().getDATA_PATH().formatted(placedBlock.getLocation()));
 
-        JsonObject obj = gson.toJsonTree(placedBlock).getAsJsonObject();
+        try {
+            FileWriter writer = new FileWriter(file);
+            writer.write(placedBlock.writeJson());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        JsonData data = new JsonData(file, obj);
-
-        data.save();
     }
 
 }

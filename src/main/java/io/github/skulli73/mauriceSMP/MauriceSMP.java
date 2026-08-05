@@ -44,6 +44,8 @@ public final class MauriceSMP extends JavaPlugin {
     private BlockDataManager blockDataManager;
     @Getter
     private final String DATA_PATH = getDataFolder().getAbsolutePath() + File.separator + "player" + File.separator + "%s.json";
+    @Getter
+    private final String DATA_PATH_BLOCKS = getDataFolder().getAbsolutePath() + File.separator + "blocks" + File.separator + "%s.json";
     public MauriceSMP () {
         super();
         instance = this;
