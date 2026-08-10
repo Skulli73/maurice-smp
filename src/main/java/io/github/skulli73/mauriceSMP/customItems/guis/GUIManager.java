@@ -70,7 +70,9 @@ public class GUIManager {
             int rowAmount2 = (int) Math.ceil((double) customItems.size() /9);
             OutlinePane pane2 = new OutlinePane(9, rowAmount2);
             for (AbstractCustomItem customItem : customItems) {
-                GuiItem guiItem = new GuiItem(customItem.getItem(),inventoryClickEvent -> {
+                ItemStack item = customItem.getItem().clone();
+                item.setAmount(1);
+                GuiItem guiItem = new GuiItem(item,inventoryClickEvent -> {
                     HumanEntity humanEntity = inventoryClickEvent.getView().getPlayer();
                     if (humanEntity instanceof Player player && itemGuis.containsKey(customItem)) {
                         player.performCommand("cf guide open item " + customItem.getId() + " 0");
@@ -87,7 +89,14 @@ public class GUIManager {
         }
         List<Recipe> recipes = new java.util.ArrayList<>(recipeManager.getRecipes().stream().toList());
         for (AbstractCustomItem customItem : itemManager.getCustomItems().values()) {
-            List<Recipe> customItemRecipes = recipes.stream().filter(c->c.getResult().equals(customItem.getItem())).toList();
+            List<Recipe> customItemRecipes = recipes.stream().filter(
+                    c->{
+                        if (c.getResult().getType() != customItem.getItem().getType())
+                            return false;
+                        AbstractCustomItem customItem1 = itemManager.itemStackToCustomItem(c.getResult());
+                        return customItem1.equals(customItem);
+                    }
+            ).toList();
             if (customItemRecipes.isEmpty())
                 continue;
             recipes.removeAll(customItemRecipes);
@@ -100,7 +109,8 @@ public class GUIManager {
                 OutlinePane middleRow = new OutlinePane(6, 1);
                 addGreyGlass(topRow, 6);
                 addGreyGlass(middleRow);
-                addItemToPane(middleRow, recipe.getResult());
+                ItemStack result = recipe.getResult();
+                addItemToPane(middleRow, result);
                 addGreyGlass(middleRow);
                 addGreyGlass(bottomRow, 4);
                 if (guis.isEmpty()) {

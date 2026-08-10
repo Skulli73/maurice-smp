@@ -141,13 +141,13 @@ public class RecipeManager {
             ItemManager itemManager = MauriceSMP.getInstance().getItemManager();
             AbstractCustomItem customItem = itemManager.stringToCustomItem(newKey);
             if (customItem != null) {
-                item = customItem.getItem();
+                item = customItem.getItem().clone();
             } else
                 return null;
         } else {
             item = new ItemStack(material);
-            item.setAmount(amount);
         }
+        item.setAmount(amount);
 
         CraftingRecipe recipe;
         if (shapeless)

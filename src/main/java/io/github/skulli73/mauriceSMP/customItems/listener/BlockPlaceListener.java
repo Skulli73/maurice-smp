@@ -5,6 +5,7 @@ import io.github.skulli73.mauriceSMP.customItems.item.AbstractCustomItem;
 import io.github.skulli73.mauriceSMP.customItems.item.blocks.BlockDataManager;
 import io.github.skulli73.mauriceSMP.customItems.item.blocks.Location;
 import io.github.skulli73.mauriceSMP.customItems.item.blocks.PlacedBlock;
+import io.github.skulli73.mauriceSMP.customItems.item.items.AbstractBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,14 +20,14 @@ public class BlockPlaceListener implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItemInHand();
         AbstractCustomItem customItem = MauriceSMP.getInstance().getItemManager().itemStackToCustomItem(item);
-        if (customItem == null)
+        if (!(customItem instanceof AbstractBlock customBlock))
             return;
         customItem.onBlockPlaceEvent(event);
         if (event.isCancelled())
             return;
         BlockDataManager blockDataManager = MauriceSMP.getInstance().getBlockDataManager();
         Location location = new Location(event.getBlock().getX(), event.getBlock().getY(), event.getBlock().getZ(), event.getBlock().getWorld());
-        PlacedBlock placedBlock = new PlacedBlock(customItem, location);
+        PlacedBlock placedBlock = new PlacedBlock(customBlock, location);
         blockDataManager.addPlacedBlock(placedBlock);
         System.out.println("aaaaaaaaaaaa");
     }

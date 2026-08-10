@@ -317,6 +317,16 @@ custom_shaped_recipes:
     - COBBLESTONE
     - REDSTONE
     - COBBLESTONE
+  NETHER_TELEPORTER 2:
+    - OBSIDIAN
+    - QUARTZ
+    - OBSIDIAN
+    - REDSTONE
+    - ENDER_PEARL
+    - REDSTONE
+    - OBSIDIAN
+    - QUARTZ
+    - OBSIDIAN
   PRISMARINE_SHARD 4:
     - air
     - LAPIS_LAZULI

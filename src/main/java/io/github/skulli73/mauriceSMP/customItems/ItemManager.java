@@ -6,6 +6,7 @@ import io.github.skulli73.mauriceSMP.customItems.item.Category;
 import io.github.skulli73.mauriceSMP.customItems.item.items.Driller;
 import io.github.skulli73.mauriceSMP.customItems.item.items.ExplosivePickaxe;
 import io.github.skulli73.mauriceSMP.customItems.item.items.Guide;
+import io.github.skulli73.mauriceSMP.customItems.item.items.NetherTeleporter;
 import lombok.Getter;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -32,6 +33,7 @@ public class ItemManager {
         new ExplosivePickaxe().register(this);
         new Guide().register(this);
         new Driller().register(this);
+        new NetherTeleporter().register(this);
     }
     public AbstractCustomItem stringToCustomItem (String string) {
         return getCustomItems().getOrDefault(string.toUpperCase(), null);

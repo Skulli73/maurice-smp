@@ -6,6 +6,7 @@ import io.github.skulli73.mauriceSMP.customItems.item.blocks.BlockDataManager;
 import io.github.skulli73.mauriceSMP.customItems.listener.BlockPlaceListener;
 import io.github.skulli73.mauriceSMP.customItems.listener.ClickListener;
 import io.github.skulli73.mauriceSMP.customItems.listener.OnBlockBreakListener;
+import io.github.skulli73.mauriceSMP.customItems.listener.RedstoneListener;
 import io.github.skulli73.mauriceSMP.dropsChanges.listener.DropsListener;
 import io.github.skulli73.mauriceSMP.skills.EntityManager;
 import io.github.skulli73.mauriceSMP.skills.SkillsManager;
@@ -68,6 +69,7 @@ public final class MauriceSMP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ClickListener(), this);
         getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
+        getServer().getPluginManager().registerEvents(new RedstoneListener(), this);
         playerDataManager =  new PlayerDataManager();
         commandManager = new CommandManager();
         skillsManager = new SkillsManager();
