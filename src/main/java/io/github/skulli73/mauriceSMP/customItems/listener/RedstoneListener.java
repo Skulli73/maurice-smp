@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseEvent;
+import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockRedstoneEvent;
 import org.bukkit.event.block.NotePlayEvent;
 
@@ -34,6 +35,17 @@ public class RedstoneListener implements Listener {
         PlacedBlock placedBlock = blockDataManager.getPlacedBlocks().get(location);
         if (placedBlock != null) {
             placedBlock.getItem().onNote(event);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onPistonExtendEvent (BlockPistonExtendEvent event) {
+        Block block = event.getBlock();
+        Location location = new Location(block.getX(), block.getY(), block.getZ(), block.getWorld());
+        BlockDataManager blockDataManager = MauriceSMP.getInstance().getBlockDataManager();
+        PlacedBlock placedBlock = blockDataManager.getPlacedBlocks().get(location);
+        if (placedBlock != null) {
+            placedBlock.getItem().onPiston(event);
         }
     }
 }

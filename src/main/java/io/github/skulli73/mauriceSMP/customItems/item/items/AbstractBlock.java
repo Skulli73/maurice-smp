@@ -3,10 +3,7 @@ package io.github.skulli73.mauriceSMP.customItems.item.items;
 import io.github.skulli73.mauriceSMP.customItems.item.AbstractCustomItem;
 import io.github.skulli73.mauriceSMP.customItems.item.Category;
 import org.bukkit.block.Block;
-import org.bukkit.event.block.BlockDispenseEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.block.BlockRedstoneEvent;
-import org.bukkit.event.block.NotePlayEvent;
+import org.bukkit.event.block.*;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class AbstractBlock extends AbstractCustomItem {
@@ -23,6 +20,10 @@ public abstract class AbstractBlock extends AbstractCustomItem {
     }
 
     public void onNote (NotePlayEvent event) {
+
+    }
+
+    public void onPiston (BlockPistonExtendEvent event) {
 
     }
 }

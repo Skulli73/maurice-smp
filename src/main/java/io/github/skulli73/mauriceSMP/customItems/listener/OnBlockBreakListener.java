@@ -13,6 +13,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDropItemEvent;
+import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -34,7 +35,6 @@ public class OnBlockBreakListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onBreakBlockBlock (BlockBreakEvent event) {
-        Player player = event.getPlayer();
         Block block = event.getBlock();
         Location location = new Location(block.getX(), block.getY(), block.getZ(), block.getWorld());
         BlockDataManager blockDataManager = MauriceSMP.getInstance().getBlockDataManager();
@@ -43,6 +43,18 @@ public class OnBlockBreakListener implements Listener {
             event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), placedBlock.getItem().getItem());
             blockDataManager.removedPlacedBlock(placedBlock);
             event.setDropItems(false);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL)
+    public void onBlockExplode (BlockExplodeEvent event) {
+        Block block = event.getExplodedBlockState().getBlock();
+        Location location = new Location(block.getX(), block.getY(), block.getZ(), block.getWorld());
+        BlockDataManager blockDataManager = MauriceSMP.getInstance().getBlockDataManager();
+        PlacedBlock placedBlock = blockDataManager.getPlacedBlocks().get(location);
+        if (placedBlock != null) {
+            event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), placedBlock.getItem().getItem());
+            blockDataManager.removedPlacedBlock(placedBlock);
         }
     }
 }

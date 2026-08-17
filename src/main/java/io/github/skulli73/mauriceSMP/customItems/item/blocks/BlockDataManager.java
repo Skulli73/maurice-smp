@@ -59,7 +59,6 @@ public class BlockDataManager {
             AbstractCustomItem customItem = itemManager.getCustomItems().get(entry.getValue());
             if (customItem instanceof AbstractBlock abstractBlock)
                 placedBlocks.put(location, new PlacedBlock(abstractBlock ,location));
-            System.out.println(location.toStringFormatted() + "  " +  customItem);
         }
     }
 
@@ -88,7 +87,6 @@ public class BlockDataManager {
 
         try {
             FileWriter writer = new FileWriter(file);
-            System.out.println(blocksString);
             writer.write(GSON.toJson(blocksString));
             writer.close();
 
