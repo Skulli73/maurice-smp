@@ -41,7 +41,8 @@ public class OnBlockBreakListener implements Listener {
         PlacedBlock placedBlock = blockDataManager.getPlacedBlocks().get(location);
         if (placedBlock != null) {
             event.getBlock().getWorld().dropItem(event.getBlock().getLocation(), placedBlock.getItem().getItem());
+            blockDataManager.removedPlacedBlock(placedBlock);
+            event.setDropItems(false);
         }
-        event.setDropItems(false);
     }
 }

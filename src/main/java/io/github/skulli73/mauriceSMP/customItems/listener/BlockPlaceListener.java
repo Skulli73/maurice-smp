@@ -29,6 +29,6 @@ public class BlockPlaceListener implements Listener {
         Location location = new Location(event.getBlock().getX(), event.getBlock().getY(), event.getBlock().getZ(), event.getBlock().getWorld());
         PlacedBlock placedBlock = new PlacedBlock(customBlock, location);
         blockDataManager.addPlacedBlock(placedBlock);
-        System.out.println("aaaaaaaaaaaa");
+
     }
 }

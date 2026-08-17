@@ -30,22 +30,26 @@ public class Location {
         return String.format("%08d", x+50000000) + String.format("%08d", y+50000000) + String.format("%08d", z+50000000) + world.getName();
     }
 
+    public String toStringFormatted () {
+        return "[" + x + ", " + y + ", " + z + "]";
+    }
+
     @Nullable
-    public Location fromString (String str) {
+    public static Location fromString (String str) {
         if (str.length() < 25)
             return null;
         String xStr = str.substring(0, 8);
         if (!isNumeric(xStr))
             return null;
-        int x = (int)Double.parseDouble(xStr);
+        int x = (int)Double.parseDouble(xStr)-50000000;
         String yStr = str.substring(8, 16);
         if (!isNumeric(xStr))
             return null;
-        int y = (int)Double.parseDouble(yStr);
+        int y = (int)Double.parseDouble(yStr)-50000000;
         String zStr = str.substring(16, 24);
         if (!isNumeric(zStr))
             return null;
-        int z = (int)Double.parseDouble(zStr);
+        int z = (int)Double.parseDouble(zStr)-50000000;
         String worldStr = str.substring(24);
         World world = MauriceSMP.getInstance().getServer().getWorld(worldStr);
         if (world == null)
@@ -57,7 +61,7 @@ public class Location {
         return BlockDataManager.GSON.toJson(toString());
     }
 
-    private boolean isNumeric(String str) {
+    private static boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
     }
 
