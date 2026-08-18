@@ -25,6 +25,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class NetherTeleporter extends AbstractBlock {
@@ -34,8 +36,14 @@ public class NetherTeleporter extends AbstractBlock {
     private static ItemStack getItemStack () {
         ItemStack itemStack = new ItemStack(Material.NOTE_BLOCK);
         ItemMeta meta = itemStack.getItemMeta();
-        if (meta != null)
+        if (meta != null) {
             meta.setItemName("§a§bNether Teleporter§r");
+            List<String> lore = meta.getLore();
+            if (lore == null)
+                lore = new ArrayList<>();
+            lore.add("§aRequires an adjacent chest with enderpearls.");
+            meta.setLore(lore);
+        }
         itemStack.setItemMeta(meta);
         return itemStack;
     }
